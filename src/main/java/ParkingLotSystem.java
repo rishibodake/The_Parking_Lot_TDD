@@ -9,5 +9,8 @@ public class ParkingLotSystem {
     }
 
     public boolean unPark(Object vehicle) {
+        if (this.vehicle.equals(vehicle))
+            return true;
+        return false;
     }
 }
