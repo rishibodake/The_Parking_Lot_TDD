@@ -7,4 +7,7 @@ public class ParkingLotSystem {
         this.vehicle = vehicle;
         return true;
     }
+
+    public boolean unPark(Object vehicle) {
+    }
 }
