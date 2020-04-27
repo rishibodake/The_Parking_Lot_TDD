@@ -11,10 +11,18 @@ public class ParkingLotTest {
         vehicle = new Object();
         parkingLotSystem = new ParkingLotSystem();
     }
-
+    //Test For Park The Vehicle
     @Test
     public void givenAVehicle_WhenParked_ShouldReturnTrue() {
-        boolean isParked = parkingLotSystem.park(new Object());
+        boolean isParked = parkingLotSystem.park(vehicle);
         Assert.assertEquals(true, isParked);
+    }
+
+    //Test For Check If Already vehicle is parked
+    @Test
+    public void givenAVehicle_WhenAlreadyParked_ShouldReturnFalse() {
+        parkingLotSystem.park(vehicle);
+        boolean isParked = parkingLotSystem.park(new Object());
+        Assert.assertEquals(false, isParked);
     }
 }
