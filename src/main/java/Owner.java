@@ -17,6 +17,11 @@ public class Owner implements Observer {
         return parkingLotStatus;
     }
 
-    public boolean isPresent(LinkedHashMap<String,Vehicle> parkingLot, Vehicle vehicle) {
+    public boolean isPresent(LinkedHashMap<String,Vehicle> parkingLot, Vehicle vehicle) throws ParkingLotSystemException {
+        if (vehicle == null)
+            throw new ParkingLotSystemException(ParkingLotSystemException.ExceptionType.NO_SUCH_A_VEHICLE, "No such a vehicle");
+        else if (parkingLot.containsKey(vehicle.getVehicleNumber()))
+            return true;
+        return false;
     }
 }
