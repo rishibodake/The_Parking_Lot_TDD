@@ -3,12 +3,11 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class ParkingLotTest {
-    Object vehicle = null;
     ParkingLotSystem parkingLotSystem = null;
+    Vehicle vehicle = null;
 
     @Before
     public void setUp() {
-        vehicle = new Object();
         parkingLotSystem = new ParkingLotSystem();
     }
     //Test For Park The Vehicle
