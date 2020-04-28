@@ -150,7 +150,6 @@ public class ParkingLotTest {
         Vehicle vehicle1 = new Vehicle("MH10BQ8109", "Ferari");
         parkingLotSystem.park(vehicle);
         parkingLotSystem.unPark(vehicle1);
-        System.out.println(parkingLotSystem.isVehicleParked(vehicle));
     }
 }
 
