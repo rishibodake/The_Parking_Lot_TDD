@@ -10,17 +10,21 @@ public class ParkingLotSystem {
     String isFull;
     int parkingLotSize = 2;
     private List<Observer> observerList = new ArrayList<>();
-
-    public ParkingLotSystem(Owner owner, Attendant attendant) {
+        //Constructor With Parameter
+         public ParkingLotSystem(Owner owner, Attendant attendant) {
         this.owner = owner;
         this.attendant = attendant;
-    }
+         }
+        //Default Constructor
+         public ParkingLotSystem() {
 
+         }
 
-    public void addObserver(Observer iObservable) {
+        //Function That Add Observer Into InterFace Observer
+         public void addObserver(Observer iObservable) {
             this.observerList.add(iObservable);
-        }
-
+         }
+         //Function To SetThe Current Status Of ParkingLot
           public void setStatus(String isFull) {
               this.isFull = isFull;
               for (Observer observer : this.observerList) {
@@ -28,36 +32,39 @@ public class ParkingLotSystem {
               }
           }
 
-        public void park(Vehicle vehicle) throws ParkingLotSystemException {
-            boolean isAvailable = owner.isAvailable(parkingLot, parkingLotSize);
-            if (isAvailable) {
-                attendant.park(parkingLot, vehicle);
+          //Function That park The Given Vehicle Into ParkingLot
+          public void park(Vehicle vehicle) throws ParkingLotSystemException {
+                boolean isAvailable = owner.isAvailable(parkingLot, parkingLotSize);
+                if (isAvailable) {
+                    attendant.park(parkingLot, vehicle);
+                }
+                if (parkingLot.size() == parkingLotSize)
+                    setStatus("Full");
+          }
+
+          //Function That unpark The given vehicle from The Parking Lot
+          public void unPark(Vehicle vehicle) throws ParkingLotSystemException {
+                boolean isPresent = owner.isPresent(parkingLot, vehicle);
+                if (isPresent) {
+                    attendant.unPark(parkingLot, vehicle);
+                }
+                if (parkingLot.size() < parkingLotSize)
+                    setStatus("Have Space");
             }
-            if (parkingLot.size() == parkingLotSize)
-                setStatus("Full");
-        }
 
+           //Function That check whether the given vehicle is Parked in parkingLot
+             public boolean isVehicleParked (Vehicle vehicle){
+                if (parkingLot.containsKey(vehicle.getVehicleNumber()))
+                    return true;
+                return false;
+             }
 
-        public void unPark(Vehicle vehicle) throws ParkingLotSystemException {
-            boolean isPresent = owner.isPresent(parkingLot, vehicle);
-            if (isPresent) {
-                attendant.unPark(parkingLot, vehicle);
+            //Function That check whether the given vehicle is Parked in parkingLot
+            public boolean isVehicleUnParked (Vehicle vehicle){
+                if (!parkingLot.containsKey(vehicle.getVehicleNumber()))
+                    return true;
+                return false;
             }
-            if (parkingLot.size() < parkingLotSize)
-                setStatus("Have Space");
-        }
-
-        public boolean isVehicleParked (Vehicle vehicle){
-            if (parkingLot.containsKey(vehicle.getVehicleNumber()))
-                return true;
-            return false;
-        }
-
-        public boolean isVehicleUnParked (Vehicle vehicle){
-            if (!parkingLot.containsKey(vehicle.getVehicleNumber()))
-                return true;
-            return false;
-        }
     }
 
 

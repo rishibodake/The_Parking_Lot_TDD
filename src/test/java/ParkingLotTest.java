@@ -10,7 +10,7 @@ public class ParkingLotTest {
     Attendant attendant = null;
 
     @Before
-    public void setUp() throws{
+    public void setUp() {
         parkingLotSystem = new ParkingLotSystem();
         owner = new Owner();
         airportSecurity = new AirportSecurity();
