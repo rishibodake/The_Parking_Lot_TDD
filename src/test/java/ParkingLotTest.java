@@ -41,14 +41,15 @@ public class ParkingLotTest {
 
     //Test To Handle Null Type Exception
     @Test
-    public void givenANullVehicle_WhenUnParked_ShouldThrowException() throws ParkingLotSystemException {
+    public void givenANullVehicle_WhenUnParked_ShouldThrowException(){
         try {
             vehicle = new Vehicle("MH15AN0101", "Alto");
             parkingLotSystem.park(vehicle);
             parkingLotSystem.unPark(null);
             boolean isUnParked = parkingLotSystem.isVehicleUnParked(vehicle);
             Assert.assertEquals(true, isUnParked);
-        } catch (ParkingLotSystemException e) {
+        } catch (ParkingLotSystemException e)
+        {
             Assert.assertEquals(ParkingLotSystemException.ExceptionType.NO_SUCH_A_VEHICLE,e.exceptionType);
         }
     }
@@ -63,7 +64,7 @@ public class ParkingLotTest {
 
     //Test Case In Parking Lot Is Full
     @Test
-    public void givenAVehicles_WhenParkingLotIsFull_ShouldThrowException() throws ParkingLotSystemException {
+    public void givenAVehicles_WhenParkingLotIsFull_ShouldThrowException() {
         try {
             vehicle = new Vehicle("MH13AN0808", "Bolero");
             parkingLotSystem.park(vehicle);
@@ -75,13 +76,16 @@ public class ParkingLotTest {
             parkingLotSystem.park(vehicle2);
             boolean isParked = parkingLotSystem.isVehicleParked(vehicle);
             Assert.assertEquals(true, isParked);
-        } catch (ParkingLotSystemException e) {
-            Assert.assertEquals(ParkingLotSystemException.ExceptionType.PARKING_LOT_IS_FULL, e.exceptionType);
+        }
+        catch (ParkingLotSystemException e)
+        {
+            Assert.assertEquals(ParkingLotSystemException.ExceptionType.PARKING_LOT_IS_FULL,e.exceptionType);
+
         }
     }
 
     @Test
-    public void givenAVehicles_WhenParkingLotIsFull_ShouldInformToOwner() throws ParkingLotSystemException {
+    public void givenAVehicles_WhenParkingLotIsFull_ShouldInformToOwner(){
         try {
             parkingLotSystem.addObserver(owner);
             vehicle = new Vehicle("MH13AN0808", "Bolero");
@@ -91,8 +95,11 @@ public class ParkingLotTest {
             Vehicle vehicle2 = new Vehicle("MH10BQ8109", "Marshal");
             parkingLotSystem.park(vehicle2);
             Assert.assertEquals("Full", owner.getIsFull());
-        } catch (ParkingLotSystemException e) {
-            Assert.assertEquals(ParkingLotSystemException.ExceptionType.PARKING_LOT_IS_FULL, e.exceptionType);
+        }
+        catch (ParkingLotSystemException e)
+        {
+            Assert.assertEquals(ParkingLotSystemException.ExceptionType.PARKING_LOT_IS_FULL,e.exceptionType);
+        }
         }
     }
-}
+
