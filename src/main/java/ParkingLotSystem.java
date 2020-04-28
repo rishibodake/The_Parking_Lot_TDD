@@ -6,6 +6,12 @@ public class ParkingLotSystem {
     boolean isFull, isEmpty;
     int parkingLotSize = 2;
 
+    public void setInformation(String isFull) {
+        this.isFull = isFull;
+        for (Observer observer: this.observerList) {
+            observer.update(this.isFull);
+        }
+
     public void park(Vehicle vehicle) throws ParkingLotSystemException {
         if (parkingLot.size() < parkingLotSize) {
             parkingLot.put(vehicle.getVehicleNumber(), vehicle);
@@ -15,7 +21,7 @@ public class ParkingLotSystem {
         if (parkingLot.size() == parkingLotSize)
             setInformation("Full");
     }
-    }
+
 
     public void unPark(Vehicle vehicle) throws ParkingLotSystemException{
         if(vehicle == null)
