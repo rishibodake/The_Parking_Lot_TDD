@@ -1,7 +1,7 @@
 public class Owner implements Observer {
     private String isFull;
 
-    //overrided method update from Observer Interface
+    //overided method update from Observer Interface
     @Override
     public void update(Object status) {
         this.setIsFull((String) status);
@@ -9,5 +9,9 @@ public class Owner implements Observer {
     //getter
     public void setIsFull(String isFull) {
         this.isFull = isFull;
+    }
+
+    public String getIsFull() {
+        return isFull;
     }
 }
