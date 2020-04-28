@@ -60,4 +60,22 @@ public class ParkingLotTest {
         Assert.assertEquals(false, isUnParked);
     }
 
+    //Test Case In Parking Lot Is Full
+    @Test
+    public void givenAVehicles_WhenParkingLotIsFull_ShouldThrowException() throws ParkingLotSystemException {
+        try {
+            vehicle = new Vehicle("1", "car");
+            parkingLotSystem.park(vehicle);
+            boolean isUnParked = parkingLotSystem.isVehicleUnParked(vehicle);
+            Assert.assertEquals(false, isUnParked);
+            Vehicle vehicle1 = new Vehicle("2", "car1");
+            parkingLotSystem.park(vehicle1);
+            Vehicle vehicle2 = new Vehicle("3", "car2");
+            parkingLotSystem.park(vehicle2);
+            boolean isParked = parkingLotSystem.isVehicleParked(vehicle);
+            Assert.assertEquals(true, isParked);
+        } catch (ParkingLotSystemException e) {
+            Assert.assertEquals(ParkingLotSystemException.ExceptionType.PARKING_LOT_IS_FULL, e.exceptionType);
+        }
+    }
 }
