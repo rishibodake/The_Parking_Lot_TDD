@@ -128,5 +128,18 @@ public class ParkingLotTest {
         parkingLotSystem.unPark(vehicle1);
         Assert.assertEquals("Have Space", owner.getParkingLotStatus());
     }
+
+    //test for attendant park car whenever owner want
+    @Test
+    public void givenVehicle_WhenOwnerWantAttendant_ShouldParkTheCar() throws ParkingLotSystemException {
+        parkingLotSystem = new ParkingLotSystem(owner, attendant);
+        parkingLotSystem.addObserver(owner);
+        vehicle = new Vehicle("MH13AN0808", "McLaren");
+        parkingLotSystem.park(vehicle);
+        Vehicle vehicle1 = new Vehicle("MH10BQ8109", "Ferari");
+        parkingLotSystem.park(vehicle);
+        parkingLotSystem.unPark(vehicle1);
+        System.out.println(parkingLotSystem.isVehicleParked(vehicle));
+    }
 }
 
