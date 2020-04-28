@@ -14,7 +14,7 @@ public class ParkingLotSystem {
             this.observerList.add(iObservable);
         }
 
-          public void setInformation(String isFull) {
+          public void setStatus(String isFull) {
               this.isFull = isFull;
               for (Observer observer : this.observerList) {
                   observer.update(this.isFull);
@@ -31,7 +31,7 @@ public class ParkingLotSystem {
                 throw new ParkingLotSystemException(ParkingLotSystemException.ExceptionType.PARKING_LOT_IS_FULL, "Parking Lot Is Full");
             }
             if (parkingLot.size() == parkingLotSize)
-                setInformation("Full");
+                setStatus("Full");
         }
 
 
