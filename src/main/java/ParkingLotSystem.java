@@ -32,7 +32,7 @@ public class ParkingLotSystem {
         return false;
     }
 
-    public boolean isVehicleUnParked(Object vehicle) {
+    public boolean isVehicleUnParked(Vehicle vehicle) {
         if (!parkingLot.containsKey(vehicle.getVehicleNumber()))
             return true;
         return false;
