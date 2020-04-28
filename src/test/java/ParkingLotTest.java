@@ -6,11 +6,13 @@ public class ParkingLotTest {
     ParkingLotSystem parkingLotSystem = null;
     Vehicle vehicle = null;
     Owner owner = null;
+    AirportSecurity airportSecurity = null;
 
     @Before
     public void setUp() {
         parkingLotSystem = new ParkingLotSystem();
         owner = new Owner();
+        airportSecurity = new AirportSecurity;
     }
     //Test For Park The Vehicle
     @Test
