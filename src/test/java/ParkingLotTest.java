@@ -10,7 +10,7 @@ public class ParkingLotTest {
     Attendant attendant = null;
 
     @Before
-    public void setUp() {
+    public void setUp() throws{
         parkingLotSystem = new ParkingLotSystem();
         owner = new Owner();
         airportSecurity = new AirportSecurity();
@@ -19,6 +19,7 @@ public class ParkingLotTest {
     //Test For Park The Vehicle
     @Test
     public void givenAVehicle_WhenParked_ShouldReturnTrue() throws ParkingLotSystemException {
+        parkingLotSystem = new ParkingLotSystem(owner, attendant);
         vehicle = new Vehicle("MH11N2318","Swift");
         parkingLotSystem.park(vehicle);
         boolean isParked = parkingLotSystem.isVehicleParked(vehicle);
@@ -27,6 +28,7 @@ public class ParkingLotTest {
     //Test For Check If Already vehicle is parked
     @Test
     public void givenAVehicle_WhenAlreadyParked_ShouldReturnFalse() throws ParkingLotSystemException{
+        parkingLotSystem = new ParkingLotSystem(owner, attendant);
         vehicle = new Vehicle("MH15AN0101", "Alto");
         Vehicle vehicle1 = new Vehicle("MH17BW9898", "Jeep");
         parkingLotSystem.park(vehicle);
@@ -36,6 +38,7 @@ public class ParkingLotTest {
     //Test For UnPark The Vehicle
     @Test
     public void givenAVehicle_WhenUnParked_ReturnTrue() throws ParkingLotSystemException {
+        parkingLotSystem = new ParkingLotSystem(owner, attendant);
         vehicle = new Vehicle("MH15AN0101", "Alto");
         parkingLotSystem.park(vehicle);
         parkingLotSystem.unPark(vehicle);
@@ -47,6 +50,7 @@ public class ParkingLotTest {
     @Test
     public void givenANullVehicle_WhenUnParked_ShouldThrowException(){
         try {
+            parkingLotSystem = new ParkingLotSystem(owner, attendant);
             vehicle = new Vehicle("MH15AN0101", "Alto");
             parkingLotSystem.park(vehicle);
             parkingLotSystem.unPark(null);
@@ -60,6 +64,7 @@ public class ParkingLotTest {
     //Check parked vehicle for unParking
     @Test
     public void givenAVehicle_WhenAlreadyParkedAndCheckIfUnPark_ShouldReturnFalse() throws ParkingLotSystemException {
+        parkingLotSystem = new ParkingLotSystem(owner, attendant);
         vehicle = new Vehicle("MH15AN0101", "Alto");
         parkingLotSystem.park(vehicle);
         boolean isUnParked = parkingLotSystem.isVehicleUnParked(vehicle);
@@ -70,6 +75,7 @@ public class ParkingLotTest {
     @Test
     public void givenAVehicles_WhenParkingLotIsFull_ShouldThrowException() {
         try {
+            parkingLotSystem = new ParkingLotSystem(owner, attendant);
             vehicle = new Vehicle("MH13AN0808", "Bolero");
             parkingLotSystem.park(vehicle);
             boolean isUnParked = parkingLotSystem.isVehicleUnParked(vehicle);
@@ -91,6 +97,7 @@ public class ParkingLotTest {
     @Test
     public void givenAVehicles_WhenParkingLotIsFull_ShouldInformToOwner(){
         try {
+            parkingLotSystem = new ParkingLotSystem(owner, attendant);
             parkingLotSystem.addObserver(owner);
             vehicle = new Vehicle("MH13AN0808", "Bolero");
             parkingLotSystem.park(vehicle);
@@ -108,6 +115,7 @@ public class ParkingLotTest {
     //Test To Inform Airport Security
     @Test
     public void givenAVehicles_WhenParkingLotIsFull_ShouldInformToAirportSecurityAndOwner() throws ParkingLotSystemException {
+        parkingLotSystem = new ParkingLotSystem(owner, attendant);
         parkingLotSystem.addObserver(owner);
         parkingLotSystem.addObserver(airportSecurity);
         vehicle = new Vehicle("MH13AN0808", "Bolero");
@@ -121,6 +129,7 @@ public class ParkingLotTest {
     //Test Case When The Parking Lot Has Space Again
     @Test
     public void givenAVehicles_WhenParkingLotHasSpaceAgain_ShouldInformToParkingLotOwner() throws ParkingLotSystemException {
+        parkingLotSystem = new ParkingLotSystem(owner, attendant);
         parkingLotSystem.addObserver(owner);
         vehicle = new Vehicle("MH13AN0808", "Bolero");
         parkingLotSystem.park(vehicle);
