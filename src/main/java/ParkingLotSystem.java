@@ -6,6 +6,10 @@ public class ParkingLotSystem {
     boolean isFull, isEmpty;
     int parkingLotSize = 2;
 
+    public void addObserver(Observer iObservable) {
+        this.observerList.add(iObservable);
+    }
+
     public void setInformation(String isFull) {
         this.isFull = isFull;
         for (Observer observer: this.observerList) {
