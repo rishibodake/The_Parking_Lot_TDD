@@ -13,7 +13,7 @@ public class ParkingLotTest {
     }
     //Test For Park The Vehicle
     @Test
-    public void givenAVehicle_WhenParked_ShouldReturnTrue() {
+    public void givenAVehicle_WhenParked_ShouldReturnTrue() throws ParkingLotSystemException {
         parkingLotSystem.park(vehicle);
         boolean isParked = parkingLotSystem.isVehicleParked(vehicle);
         Assert.assertEquals(true, isParked);
@@ -28,7 +28,7 @@ public class ParkingLotTest {
             Assert.assertEquals(false, isParked);
         }
         catch (ParkingLotSystemException e){
-            Assert.assertEquals(ParkingLotSystemException.ExceptionType.PARKING_LOT_IS_FULL, e.excetionType);
+            Assert.assertEquals(ParkingLotSystemException.ExceptionType.PARKING_LOT_IS_FULL, e.exceptionType);
         }
     }
     //Test For UnPark The Vehicle
