@@ -7,14 +7,14 @@ public class ParkingLotSystem {
     int parkingLotSize = 2;
 
     public void park(Vehicle vehicle) throws ParkingLotSystemException {
-        if (parkingLot.size() == parkingLotSize) {
-            owner.setParkingLotStatus("Full");
-            isFull = true;
-            throw new ParkingLotSystemException(ParkingLotSystemException.ExceptionType.PARKING_LOT_IS_FULL, "Parking Lot Is Full");
-            this.vehicle = vehicle;
-        } else {
+        if (parkingLot.size() < parkingLotSize) {
             parkingLot.put(vehicle.getVehicleNumber(), vehicle);
+        } else if (parkingLot.size() == parkingLotSize) {
+            throw new ParkingLotSystemException(ParkingLotSystemException.ExceptionType.PARKING_LOT_IS_FULL,"Parking Lot Is Full");
         }
+        if (parkingLot.size() == parkingLotSize)
+            setInformation("Full");
+    }
     }
 
     public void unPark(Vehicle vehicle) throws ParkingLotSystemException{
@@ -22,8 +22,6 @@ public class ParkingLotSystem {
             throw new ParkingLotSystemException(ParkingLotSystemException.ExceptionType.NO_SUCH_A_VEHICLE,"No Such Vehicle Found");
         else if (parkingLot.containsKey(vehicle.getVehicleNumber()))
             parkingLot.remove(vehicle.getVehicleNumber());
-        else if (parkingLot.size() < 2)
-            isEmpty = true;
         }
 
     public boolean isVehicleParked(Vehicle vehicle) {
