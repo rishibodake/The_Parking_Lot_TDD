@@ -7,7 +7,9 @@ public class ParkingLotSystem {
         this.vehicle = vehicle;
     }
 
-    public void unPark(Object vehicle) {
+    public void unPark(Object vehicle) throws ParkingLotSystemException{
+        if(vehicle == null)
+            throw new ParkingLotSystemException(ParkingLotSystemException.ExceptionType.NO_SUCH_A_VEHICLE,"No Such Vehicle Found");
         if (this.vehicle.equals(vehicle))
             this.vehicle=null;
     }
