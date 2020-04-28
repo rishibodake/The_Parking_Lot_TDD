@@ -10,6 +10,7 @@ public class ParkingLotTest {
     @Before
     public void setUp() {
         parkingLotSystem = new ParkingLotSystem();
+        owner = new Owner();
     }
     //Test For Park The Vehicle
     @Test
@@ -87,6 +88,8 @@ public class ParkingLotTest {
             parkingLotSystem.park(vehicle);
             Vehicle vehicle1 = new Vehicle("MH10BQ8108", "BULLET");
             parkingLotSystem.park(vehicle1);
+            Vehicle vehicle2 = new Vehicle("MH10BQ8109", "Marshal");
+            parkingLotSystem.park(vehicle2);
             Assert.assertEquals("Full", owner.getIsFull());
         } catch (ParkingLotSystemException e) {
             Assert.assertEquals(ParkingLotSystemException.ExceptionType.PARKING_LOT_IS_FULL, e.exceptionType);

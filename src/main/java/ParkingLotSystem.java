@@ -8,14 +8,13 @@ public class ParkingLotSystem {
     String isFull;
     int parkingLotSize = 2;
     private List<Observer> observerList = new ArrayList<>();
-    Vehicle vehicle = null;
 
 
         public void addObserver(Observer iObservable) {
             this.observerList.add(iObservable);
         }
 
-          public void setInformation(String isFull) throws ParkingLotSystemException {
+          public void setInformation(String isFull) {
               this.isFull = isFull;
               for (Observer observer : this.observerList) {
                   observer.update(this.isFull);
