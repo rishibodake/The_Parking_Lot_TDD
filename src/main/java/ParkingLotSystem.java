@@ -1,11 +1,12 @@
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 public class ParkingLotSystem {
     Attendant attendant = null;
     Owner owner = new Owner();
-    HashMap<String, Object> parkingLot = new HashMap();
+    LinkedHashMap<String, Vehicle> parkingLot = new LinkedHashMap();
     String isFull;
     int parkingLotSize = 2;
     private List<Observer> observerList = new ArrayList<>();
