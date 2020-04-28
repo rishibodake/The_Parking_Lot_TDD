@@ -12,7 +12,7 @@ public class ParkingLotTest {
     public void setUp() {
         parkingLotSystem = new ParkingLotSystem();
         owner = new Owner();
-        airportSecurity = new AirportSecurity;
+        airportSecurity = new AirportSecurity();
     }
     //Test For Park The Vehicle
     @Test
@@ -114,6 +114,19 @@ public class ParkingLotTest {
         parkingLotSystem.park(vehicle1);
         Assert.assertEquals("Full", airportSecurity.getIsFull());
         Assert.assertEquals("Full", owner.getIsFull());
+    }
+
+    //Test Case When The Parking Lot Has Space Again
+    @Test
+    public void givenAVehicles_WhenParkingLotHasSpaceAgain_ShouldInformToParkingLotOwner() throws ParkingLotSystemException {
+        parkingLotSystem.addObserver(owner);
+        vehicle = new Vehicle("MH13AN0808", "Bolero");
+        parkingLotSystem.park(vehicle);
+        Vehicle vehicle1 = new Vehicle("MH10BQ8109", "Marshal");
+        parkingLotSystem.park(vehicle1);
+        Assert.assertEquals("Full", owner.getIsFull());
+        parkingLotSystem.unPark(vehicle1);
+        Assert.assertEquals("Have Space", owner.getIsFull());
     }
 }
 
