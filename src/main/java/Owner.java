@@ -24,4 +24,7 @@ public class Owner implements Observer {
             return true;
         return false;
     }
+
+    public boolean isAvailable(LinkedHashMap<String,Vehicle> parkingLot, int parkingLotSize) {
+    }
 }
