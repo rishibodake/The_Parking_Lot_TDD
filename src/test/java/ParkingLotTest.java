@@ -96,7 +96,7 @@ public class ParkingLotTest {
             parkingLotSystem.park(vehicle1);
             Vehicle vehicle2 = new Vehicle("MH10BQ8109", "Marshal");
             parkingLotSystem.park(vehicle2);
-            Assert.assertEquals("Full", owner.getIsFull());
+            Assert.assertEquals("Full", owner.getParkingLotStatus());
         }
         catch (ParkingLotSystemException e)
         {
@@ -112,8 +112,8 @@ public class ParkingLotTest {
         parkingLotSystem.park(vehicle);
         Vehicle vehicle1 = new Vehicle("MH10BQ8109", "Marshal");
         parkingLotSystem.park(vehicle1);
-        Assert.assertEquals("Full", airportSecurity.getIsFull());
-        Assert.assertEquals("Full", owner.getIsFull());
+        Assert.assertEquals("Full", airportSecurity.getParkingLotStatus());
+        Assert.assertEquals("Full", owner.getParkingLotStatus());
     }
 
     //Test Case When The Parking Lot Has Space Again
@@ -124,9 +124,9 @@ public class ParkingLotTest {
         parkingLotSystem.park(vehicle);
         Vehicle vehicle1 = new Vehicle("MH10BQ8109", "Marshal");
         parkingLotSystem.park(vehicle1);
-        Assert.assertEquals("Full", owner.getIsFull());
+        Assert.assertEquals("Full", owner.getParkingLotStatus());
         parkingLotSystem.unPark(vehicle1);
-        Assert.assertEquals("Have Space", owner.getIsFull());
+        Assert.assertEquals("Have Space", owner.getParkingLotStatus());
     }
 }
 
