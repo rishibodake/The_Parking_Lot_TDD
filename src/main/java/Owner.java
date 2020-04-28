@@ -1,6 +1,6 @@
 import java.util.LinkedHashMap;
 
-public class Owner implements Observer {
+public class Owner implements Observer,Availability {
     private String parkingLotStatus;
 
     //overided method update from Observer Interface
@@ -17,6 +17,7 @@ public class Owner implements Observer {
         return parkingLotStatus;
     }
 
+    @Override
     public boolean isPresent(LinkedHashMap<String,Vehicle> parkingLot, Vehicle vehicle) throws ParkingLotSystemException {
         if (vehicle == null)
             throw new ParkingLotSystemException(ParkingLotSystemException.ExceptionType.NO_SUCH_A_VEHICLE, "No such a vehicle");
@@ -24,7 +25,7 @@ public class Owner implements Observer {
             return true;
         return false;
     }
-
+    @Override
     public boolean isAvailable(LinkedHashMap<String,Vehicle> parkingLot, int parkingLotSize) throws ParkingLotSystemException {
         if (parkingLot.size() < parkingLotSize) {
             return true;
