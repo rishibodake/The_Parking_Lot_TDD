@@ -35,7 +35,8 @@ public class ParkingLotTest {
     @Test
     public void givenAVehicle_WhenUnParked_ReturnTrue() throws ParkingLotSystemException {
             parkingLotSystem.park(vehicle);
-            boolean isUnParked = parkingLotSystem.unPark(vehicle);
+            parkingLotSystem.unPark(vehicle);
+            boolean isUnParked = parkingLotSystem.isVehicleUnParked(vehicle);
             Assert.assertEquals(true, isUnParked);
     }
 
