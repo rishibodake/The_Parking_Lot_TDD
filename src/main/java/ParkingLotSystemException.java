@@ -5,6 +5,7 @@ public class ParkingLotSystemException extends Exception {
     ExceptionType exceptionType;
 
     public ParkingLotSystemException(ExceptionType exceptionType,String massage){
+        super(massage);
         this.exceptionType = exceptionType;
     }
 
