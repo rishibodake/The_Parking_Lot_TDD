@@ -14,22 +14,29 @@ public class ParkingLotTest {
     //Test For Park The Vehicle
     @Test
     public void givenAVehicle_WhenParked_ShouldReturnTrue() {
-        boolean isParked = parkingLotSystem.park(vehicle);
+        parkingLotSystem.park(vehicle);
+        boolean isParked = parkingLotSystem.isVehicleParked(vehicle);
         Assert.assertEquals(true, isParked);
     }
-
     //Test For Check If Already vehicle is parked
     @Test
-    public void givenAVehicle_WhenAlreadyParked_ShouldReturnFalse() {
-        parkingLotSystem.park(vehicle);
-        boolean isParked = parkingLotSystem.park(new Object());
-        Assert.assertEquals(false, isParked);
+    public void givenAVehicle_WhenAlreadyParked_ShouldReturnFalse() throws ParkingLotSystemException{
+        try {
+            parkingLotSystem.park(vehicle);
+            parkingLotSystem.park(new Object());
+            boolean isParked = parkingLotSystem.isVehicleParked(vehicle);
+            Assert.assertEquals(false, isParked);
+        }
+        catch (ParkingLotSystemException e){
+            Assert.assertEquals(ParkingLotSystemException.ExceptionType.PARKING_LOT_IS_FULL, e.excetionType);
+        }
     }
     //Test For UnPark The Vehicle
     @Test
-    public void givenAVehicle_WhenUnParked_ReturnTrue() {
-        parkingLotSystem.park(vehicle);
-        boolean isUnParked = parkingLotSystem.unPark(vehicle);
-        Assert.assertEquals(true, isUnParked);
+    public void givenAVehicle_WhenUnParked_ReturnTrue() throws ParkingLotSystemException {
+            parkingLotSystem.park(vehicle);
+            boolean isUnParked = parkingLotSystem.unPark(vehicle);
+            Assert.assertEquals(true, isUnParked);
     }
+
 }
