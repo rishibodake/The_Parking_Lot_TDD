@@ -1,3 +1,5 @@
+import java.util.LinkedHashMap;
+
 public class Owner implements Observer {
     private String parkingLotStatus;
 
@@ -13,5 +15,8 @@ public class Owner implements Observer {
 
     public String getParkingLotStatus() {
         return parkingLotStatus;
+    }
+
+    public boolean isPresent(LinkedHashMap<String,Vehicle> parkingLot, Vehicle vehicle) {
     }
 }

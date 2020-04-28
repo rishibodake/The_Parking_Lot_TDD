@@ -7,5 +7,6 @@ public class Attendant {
     }
 
     public void unPark(LinkedHashMap<String,Vehicle> parkingLot, Vehicle vehicle) {
+        parkingLot.remove(vehicle.getVehicleNumber());
     }
 }
