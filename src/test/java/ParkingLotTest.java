@@ -5,6 +5,7 @@ import org.junit.Test;
 public class ParkingLotTest {
     ParkingLotSystem parkingLotSystem = null;
     Vehicle vehicle = null;
+    Owner owner = null;
 
     @Before
     public void setUp() {
@@ -63,16 +64,30 @@ public class ParkingLotTest {
     @Test
     public void givenAVehicles_WhenParkingLotIsFull_ShouldThrowException() throws ParkingLotSystemException {
         try {
-            vehicle = new Vehicle("1", "car");
+            vehicle = new Vehicle("MH13AN0808", "Bolero");
             parkingLotSystem.park(vehicle);
             boolean isUnParked = parkingLotSystem.isVehicleUnParked(vehicle);
             Assert.assertEquals(false, isUnParked);
-            Vehicle vehicle1 = new Vehicle("2", "car1");
+            Vehicle vehicle1 = new Vehicle("MH50A0001", "Fortuner");
             parkingLotSystem.park(vehicle1);
-            Vehicle vehicle2 = new Vehicle("3", "car2");
+            Vehicle vehicle2 = new Vehicle("MH10BQ8108", "BULLET");
             parkingLotSystem.park(vehicle2);
             boolean isParked = parkingLotSystem.isVehicleParked(vehicle);
             Assert.assertEquals(true, isParked);
+        } catch (ParkingLotSystemException e) {
+            Assert.assertEquals(ParkingLotSystemException.ExceptionType.PARKING_LOT_IS_FULL, e.exceptionType);
+        }
+    }
+
+    @Test
+    public void givenAVehicles_WhenParkingLotIsFull_ShouldInformToOwner() throws ParkingLotSystemException {
+        try {
+            parkingLotSystem.addObserver(owner);
+            vehicle = new Vehicle("MH13AN0808", "Bolero");
+            parkingLotSystem.park(vehicle);
+            Vehicle vehicle1 = new Vehicle("MH10BQ8108", "BULLET");
+            parkingLotSystem.park(vehicle1);
+            Assert.assertEquals("Full", owner.getIsFull());
         } catch (ParkingLotSystemException e) {
             Assert.assertEquals(ParkingLotSystemException.ExceptionType.PARKING_LOT_IS_FULL, e.exceptionType);
         }
