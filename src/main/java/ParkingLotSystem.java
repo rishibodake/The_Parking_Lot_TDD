@@ -3,14 +3,20 @@ import java.util.HashMap;
 import java.util.List;
 
 public class ParkingLotSystem {
+    Attendant attendant = null;
     Owner owner = new Owner();
     HashMap<String, Object> parkingLot = new HashMap();
     String isFull;
     int parkingLotSize = 2;
     private List<Observer> observerList = new ArrayList<>();
 
+    public ParkingLotSystem(Owner owner, Attendant attendant) {
+        this.owner = owner;
+        this.attendant = attendant;
+    }
 
-        public void addObserver(Observer iObservable) {
+
+    public void addObserver(Observer iObservable) {
             this.observerList.add(iObservable);
         }
 
