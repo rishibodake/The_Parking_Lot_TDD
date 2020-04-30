@@ -151,5 +151,21 @@ public class ParkingLotTest {
         parkingLotSystem.park(vehicle);
         parkingLotSystem.unPark(vehicle1);
     }
+
+    //Test For Find The Vehicle Number
+    @Test
+    public void givenVehicle_WhenWantToFindCar_ShouldReturnNumberInParkingLot() throws ParkingLotSystemException {
+        parkingLotSystem = new ParkingLotSystem(owner, attendant);
+        parkingLotSystem.addObserver(owner);
+        int TotalNumberOfCars = 9;
+        for (int vehicleIteration = 0; vehicleIteration < TotalNumberOfCars; vehicleIteration++) {
+            Vehicle vehicle = new Vehicle(Integer.toString(vehicleIteration), "BMW");
+            parkingLotSystem.park(vehicle);
+        }
+        Vehicle vehicle2 = new Vehicle("55", "Thar");
+        parkingLotSystem.park(vehicle2);
+        int numberInParkingLot = parkingLotSystem.getMyCarParkingNumber(vehicle2);
+        Assert.assertEquals(9, numberInParkingLot);
+    }
 }
 
