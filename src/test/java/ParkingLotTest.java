@@ -150,7 +150,6 @@ public class ParkingLotTest {
         parkingLotSystem.park(vehicle);
         Vehicle vehicle1 = new Vehicle("MH10BQ8109", "Marshal");
         parkingLotSystem.park(vehicle1);
-        Assert.assertEquals("Full", owner.getParkingLotStatus());
         parkingLotSystem.unPark(vehicle1);
         Assert.assertEquals("Have Space", owner.getParkingLotStatus());
     }
