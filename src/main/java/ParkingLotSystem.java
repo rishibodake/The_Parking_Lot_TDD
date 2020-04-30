@@ -34,7 +34,7 @@ public class ParkingLotSystem {
                 boolean isAvailable = owner.isAvailable(parkingLot, parkingLotSize);
                 if (isAvailable) {
                     attendant.park(parkingLot, vehicle);
-                    owner.setParkingCharge(vehicle.getVehicleNumber());//Function To set Charge For Parking
+                    owner.setParkingCharge(vehicle.getVehicleNumber()+" Rupees 10");//Function To set Charge For Parking
                 }
                 if (parkingLot.size() == parkingLotSize)
                     setStatus("Full");

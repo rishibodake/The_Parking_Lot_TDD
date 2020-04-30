@@ -2,6 +2,7 @@ import java.util.LinkedHashMap;
 
 public class Owner implements Observer,Availability {
     private String parkingLotStatus;
+    private String parkingCharge;
 
     //overided method update from Observer Interface
     @Override
@@ -35,6 +36,7 @@ public class Owner implements Observer,Availability {
         return false;
     }
 
-    public void setParkingCharge(String vehicleNumber) {
+    public void setParkingCharge(String parkingCharge) {
+        this.parkingCharge = parkingCharge;
     }
 }
