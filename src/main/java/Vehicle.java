@@ -10,7 +10,8 @@ public class Vehicle {
     public String getVehicleNumber() {
         return vehicleNumber;
     }
-    public String getName() {
+    public String getName()
+    {
         return name;
     }
 }

@@ -1,7 +1,4 @@
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.List;
+import java.util.*;
 
 public class ParkingLotSystem {
     Attendant attendant = null;
@@ -64,6 +61,10 @@ public class ParkingLotSystem {
                 if (!parkingLot.containsKey(vehicle.getVehicleNumber()))
                     return true;
                 return false;
+            }
+
+            public int getMyCarParkingNumber(Vehicle vehicle) {
+
             }
     }
 
