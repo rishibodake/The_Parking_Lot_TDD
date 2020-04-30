@@ -76,6 +76,11 @@ public class ParkingLotTest {
     public void givenAVehicles_WhenParkingLotIsFull_ShouldThrowException() {
         try {
             parkingLotSystem = new ParkingLotSystem(owner, attendant);
+            int numberOfCars = 8;
+            for (int vehicleIteration = 0; vehicleIteration < numberOfCars; vehicleIteration++) {
+                Vehicle vehicle = new Vehicle(Integer.toString(vehicleIteration), "Audi");
+                parkingLotSystem.park(vehicle);
+            }
             vehicle = new Vehicle("MH13AN0808", "Bolero");
             parkingLotSystem.park(vehicle);
             boolean isUnParked = parkingLotSystem.isVehicleUnParked(vehicle);
@@ -99,6 +104,11 @@ public class ParkingLotTest {
         try {
             parkingLotSystem = new ParkingLotSystem(owner, attendant);
             parkingLotSystem.addObserver(owner);
+            int numberOfCars = 8;
+            for (int vehicleIteration = 0; vehicleIteration < numberOfCars; vehicleIteration++) {
+                Vehicle vehicle = new Vehicle(Integer.toString(vehicleIteration), "Audi");
+                parkingLotSystem.park(vehicle);
+            }
             vehicle = new Vehicle("MH13AN0808", "Bolero");
             parkingLotSystem.park(vehicle);
             Vehicle vehicle1 = new Vehicle("MH10BQ8108", "BULLET");
@@ -118,6 +128,11 @@ public class ParkingLotTest {
         parkingLotSystem = new ParkingLotSystem(owner, attendant);
         parkingLotSystem.addObserver(owner);
         parkingLotSystem.addObserver(airportSecurity);
+        int numberOfCars = 8;
+        for (int vehicleIteration = 0; vehicleIteration < numberOfCars; vehicleIteration++) {
+            Vehicle vehicle = new Vehicle(Integer.toString(vehicleIteration), "Audi");
+            parkingLotSystem.park(vehicle);
+        }
         vehicle = new Vehicle("MH13AN0808", "Bolero");
         parkingLotSystem.park(vehicle);
         Vehicle vehicle1 = new Vehicle("MH10BQ8109", "Marshal");
@@ -154,7 +169,7 @@ public class ParkingLotTest {
 
     //Test For Find The Vehicle Number
     @Test
-    public void givenVehicle_WhenWantToFindCar_ShouldReturngetNumberInParkingLot() throws ParkingLotSystemException {
+    public void givenVehicle_WhenWantToFindCar_ShouldReturnGetNumberInParkingLot() throws ParkingLotSystemException {
         parkingLotSystem = new ParkingLotSystem(owner, attendant);
         parkingLotSystem.addObserver(owner);
         int TotalNumberOfCars = 9;
