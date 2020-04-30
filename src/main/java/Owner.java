@@ -34,4 +34,7 @@ public class Owner implements Observer,Availability {
         }
         return false;
     }
+
+    public void setParkingCharge(String vehicleNumber) {
+    }
 }
