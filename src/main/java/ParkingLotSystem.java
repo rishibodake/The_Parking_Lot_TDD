@@ -5,7 +5,7 @@ public class ParkingLotSystem {
     Owner owner = new Owner();
     LinkedHashMap<String, Vehicle> parkingLot = new LinkedHashMap();
     String isFull;
-    int parkingLotSize = 2;
+    int parkingLotSize = 10;
     private List<Observer> observerList = new ArrayList<>();
         //Constructor With Parameter
          public ParkingLotSystem(Owner owner, Attendant attendant) {
@@ -68,7 +68,6 @@ public class ParkingLotSystem {
                     List<String> listKeys = new ArrayList<String>(keys);
                     return listKeys.indexOf(vehicle.getVehicleNumber());
                 }
-            }
     }
 
 
