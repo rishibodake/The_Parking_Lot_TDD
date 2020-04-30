@@ -64,7 +64,10 @@ public class ParkingLotSystem {
             }
 
             public int getMyCarParkingNumber(Vehicle vehicle) {
-
+                    Set<String> keys = parkingLot.keySet();
+                    List<String> listKeys = new ArrayList<String>(keys);
+                    return listKeys.indexOf(vehicle.getVehicleNumber());
+                }
             }
     }
 

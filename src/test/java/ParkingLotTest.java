@@ -154,7 +154,7 @@ public class ParkingLotTest {
 
     //Test For Find The Vehicle Number
     @Test
-    public void givenVehicle_WhenWantToFindCar_ShouldReturnNumberInParkingLot() throws ParkingLotSystemException {
+    public void givenVehicle_WhenWantToFindCar_ShouldReturngetNumberInParkingLot() throws ParkingLotSystemException {
         parkingLotSystem = new ParkingLotSystem(owner, attendant);
         parkingLotSystem.addObserver(owner);
         int TotalNumberOfCars = 9;
