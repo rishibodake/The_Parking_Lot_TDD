@@ -182,5 +182,21 @@ public class ParkingLotTest {
         int numberInParkingLot = parkingLotSystem.getMyCarParkingNumber(vehicle2);
         Assert.assertEquals(9, numberInParkingLot);
     }
+
+    //Test For Charging The Vehicle When Its Park
+    @Test
+    public void givenVehicleParkInLot_WhenCharge_ThenReturnTrue() {
+        try {
+            parkingLotSystem = new ParkingLotSystem(owner,attendant);
+            parkingLotSystem.addObserver(owner);
+            Vehicle vehicle = new Vehicle("100", "Benz");
+            parkingLotSystem.park(vehicle);
+            boolean isParked = parkingLotSystem.isVehicleParked(vehicle);
+            Assert.assertEquals(true,isParked);
+        } catch (ParkingLotSystemException e)
+        {
+            e.printStackTrace();
+        }
+    }
 }
 
