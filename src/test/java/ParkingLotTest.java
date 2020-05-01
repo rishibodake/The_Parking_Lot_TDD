@@ -89,7 +89,7 @@ public class ParkingLotTest {
         try {
             parkingLotSystem = new ParkingLotSystem(owner, attendant, parkingLot, availableLot);
             parkingLotSystem.createParkingLot();
-            int numberOfCars = 9;
+            int numberOfCars = 8;
             for (int vehicleIteration = 0; vehicleIteration < numberOfCars; vehicleIteration++) {
                 Vehicle vehicle = new Vehicle(Integer.toString(vehicleIteration), "Audi");
                 parkingLotSystem.park(vehicle);
@@ -118,7 +118,7 @@ public class ParkingLotTest {
             parkingLotSystem = new ParkingLotSystem(owner, attendant, parkingLot, availableLot);
             parkingLotSystem.createParkingLot();
             parkingLotSystem.addObserver(owner);
-            int numberOfCars = 9;
+            int numberOfCars = 8;
             for (int vehicleIteration = 0; vehicleIteration < numberOfCars; vehicleIteration++) {
                 Vehicle vehicle = new Vehicle(Integer.toString(vehicleIteration), "Audi");
                 parkingLotSystem.park(vehicle);
@@ -189,7 +189,7 @@ public class ParkingLotTest {
         parkingLotSystem = new ParkingLotSystem(owner, attendant, parkingLot, availableLot);
         parkingLotSystem.createParkingLot();
         parkingLotSystem.addObserver(owner);
-        int TotalNumberOfCars = 9;
+        int TotalNumberOfCars = 8;
         for (int vehicleIteration = 0; vehicleIteration < TotalNumberOfCars; vehicleIteration++) {
             Vehicle vehicle = new Vehicle(Integer.toString(vehicleIteration), "BMW");
             parkingLotSystem.park(vehicle);
@@ -222,14 +222,14 @@ public class ParkingLotTest {
         parkingLotSystem = new ParkingLotSystem(owner, attendant, parkingLot, availableLot);
         parkingLotSystem.createParkingLot();
         parkingLotSystem.addObserver(owner);
-        int numberOfCars = 9;
+        int numberOfCars = 8;
         for (int i = 0; i < numberOfCars; i++) {
             Vehicle vehicle = new Vehicle(Integer.toString(i), "BMW");
             parkingLotSystem.park(vehicle);
         }
-        Vehicle vehicle2 = new Vehicle("55", "Thur");
+        Vehicle vehicle2 = new Vehicle("55", "Thar");
         parkingLotSystem.park(vehicle2);
-        Vehicle vehicle3 = new Vehicle("75", "Thur");
+        Vehicle vehicle3 = new Vehicle("75", "Thar");
         parkingLotSystem.park(vehicle3);
         parkingLotSystem.unPark(vehicle3);
         String numberInParkingLot = parkingLotSystem.getMyCarParkingNumber(vehicle2);

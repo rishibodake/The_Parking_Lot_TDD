@@ -8,7 +8,7 @@ public class ParkingLotSystem {
     String isFull;
     int parkingLotSize = 10;
     private List<Observer> observerList = new ArrayList<>();
-    private int numberOfSlot = 1;
+    private int numberOfSlot = 4;
 
     //Constructor With Parameter
          public ParkingLotSystem(Owner owner, Attendant attendant) {
