@@ -1,7 +1,7 @@
 import java.util.*;
 
 public class ParkingLotSystem {
-     LinkedHashMap availableLot = null;
+     LinkedHashMap availableLot = null ;
     Attendant attendant = null;
     Owner owner = new Owner();
     LinkedHashMap<String, Vehicle> parkingLot = new LinkedHashMap();
@@ -73,16 +73,15 @@ public class ParkingLotSystem {
                 return false;
             }
 
-            public int getMyCarParkingNumber(Vehicle vehicle) {
-                    Set<String> keys = parkingLot.keySet();
-                    List<String> listKeys = new ArrayList<String>(keys);
+            public String getMyCarParkingNumber(Vehicle vehicle) {
+
                 Iterator<String> itr = parkingLot.keySet().iterator();
                 while (itr.hasNext()) {
                     String key = itr.next();
                     if (parkingLot.get(key) == vehicle)
-                        return listKeys.indexOf(key);
+                        return key;
                 }
-                return 0;
+                return null;
                 }
 
     public void createParkingLot() {

@@ -26,7 +26,7 @@ public class ParkingLotTest {
     //Test For Park The Vehicle
     @Test
     public void givenAVehicle_WhenParked_ShouldReturnTrue() throws ParkingLotSystemException {
-        parkingLotSystem = new ParkingLotSystem(owner, attendant,parkingLot);
+        parkingLotSystem = new ParkingLotSystem(owner, attendant, parkingLot, availableLot);
         parkingLotSystem.createParkingLot();
         vehicle = new Vehicle("MH11N2318","Swift");
         parkingLotSystem.park(vehicle);
