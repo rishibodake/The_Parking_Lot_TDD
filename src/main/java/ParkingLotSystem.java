@@ -65,7 +65,7 @@ public class ParkingLotSystem {
 
             //Function That check whether the given vehicle is Parked in parkingLot
             public boolean isVehicleUnParked (Vehicle vehicle){
-                if (!parkingLot.containsKey(vehicle.getVehicleNumber()))
+                if (!parkingLot.containsValue(vehicle))
                     return true;
                 return false;
             }
