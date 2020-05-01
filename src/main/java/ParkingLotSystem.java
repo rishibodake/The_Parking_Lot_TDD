@@ -80,6 +80,7 @@ public class ParkingLotSystem {
             if (parkingLotSize % numberOfSlot != 0)
                 slotCapacity += 1;
             if (counter == slotCapacity + 1) {
+                availableLot.put("P" + slot, counter - 1);
                 counter = 1;
                 slot++;
             }
@@ -88,10 +89,12 @@ public class ParkingLotSystem {
             if (length == 1) {
                 number1 = "0" + number1;
             }
-            String key = "P" + Integer.toString(slot) + number1;
+            String key = "P" + slot + number1;
             parkingLot.put(key, null);
             index++;
             counter++;
+            if (slot == numberOfSlot)
+                availableLot.put("P" + slot, counter - 1);
         }
     }
 }
