@@ -36,7 +36,7 @@ public class ParkingLotTest {
     //Test For Check If Already vehicle is parked
     @Test
     public void givenAVehicle_WhenAlreadyParked_ShouldReturnFalse() throws ParkingLotSystemException{
-        parkingLotSystem = new ParkingLotSystem(owner, attendant,parkingLot);
+        parkingLotSystem = new ParkingLotSystem(owner, attendant, parkingLot, availableLot);
         parkingLotSystem.createParkingLot();
         vehicle = new Vehicle("MH15AN0101", "Alto");
         Vehicle vehicle1 = new Vehicle("MH17BW9898", "Jeep");
@@ -47,7 +47,7 @@ public class ParkingLotTest {
     //Test For UnPark The Vehicle
     @Test
     public void givenAVehicle_WhenUnParked_ReturnTrue() throws ParkingLotSystemException {
-        parkingLotSystem = new ParkingLotSystem(owner, attendant,parkingLot);
+        parkingLotSystem = new ParkingLotSystem(owner, attendant, parkingLot, availableLot);
         parkingLotSystem.createParkingLot();
         vehicle = new Vehicle("MH15AN0101", "Alto");
         parkingLotSystem.park(vehicle);
@@ -60,7 +60,7 @@ public class ParkingLotTest {
     @Test
     public void givenANullVehicle_WhenUnParked_ShouldThrowException(){
         try {
-            parkingLotSystem = new ParkingLotSystem(owner, attendant,parkingLot);
+            parkingLotSystem = new ParkingLotSystem(owner, attendant, parkingLot, availableLot);
             parkingLotSystem.createParkingLot();
             vehicle = new Vehicle("MH15AN0101", "Alto");
             parkingLotSystem.park(vehicle);
@@ -75,7 +75,7 @@ public class ParkingLotTest {
     //Check parked vehicle for unParking
     @Test
     public void givenAVehicle_WhenAlreadyParkedAndCheckIfUnPark_ShouldReturnFalse() throws ParkingLotSystemException {
-        parkingLotSystem = new ParkingLotSystem(owner, attendant,parkingLot);
+        parkingLotSystem = new ParkingLotSystem(owner, attendant, parkingLot, availableLot);
         parkingLotSystem.createParkingLot();
         vehicle = new Vehicle("MH15AN0101", "Alto");
         parkingLotSystem.park(vehicle);
@@ -87,7 +87,7 @@ public class ParkingLotTest {
     @Test
     public void givenAVehicles_WhenParkingLotIsFull_ShouldThrowException() {
         try {
-            parkingLotSystem = new ParkingLotSystem(owner, attendant,parkingLot);
+            parkingLotSystem = new ParkingLotSystem(owner, attendant, parkingLot, availableLot);
             parkingLotSystem.createParkingLot();
             int numberOfCars = 9;
             for (int vehicleIteration = 0; vehicleIteration < numberOfCars; vehicleIteration++) {
@@ -115,7 +115,7 @@ public class ParkingLotTest {
     @Test
     public void givenAVehicles_WhenParkingLotIsFull_ShouldInformToOwner(){
         try {
-            parkingLotSystem = new ParkingLotSystem(owner, attendant,parkingLot);
+            parkingLotSystem = new ParkingLotSystem(owner, attendant, parkingLot, availableLot);
             parkingLotSystem.createParkingLot();
             parkingLotSystem.addObserver(owner);
             int numberOfCars = 9;
@@ -139,7 +139,7 @@ public class ParkingLotTest {
     //Test To Inform Airport Security
     @Test
     public void givenAVehicles_WhenParkingLotIsFull_ShouldInformToAirportSecurityAndOwner() throws ParkingLotSystemException {
-        parkingLotSystem = new ParkingLotSystem(owner, attendant,parkingLot);
+        parkingLotSystem = new ParkingLotSystem(owner, attendant, parkingLot, availableLot);
         parkingLotSystem.createParkingLot();
         parkingLotSystem.addObserver(owner);
         parkingLotSystem.addObserver(airportSecurity);
@@ -159,7 +159,7 @@ public class ParkingLotTest {
     //Test Case When The Parking Lot Has Space Again
     @Test
     public void givenAVehicles_WhenParkingLotHasSpaceAgain_ShouldInformToParkingLotOwner() throws ParkingLotSystemException {
-        parkingLotSystem = new ParkingLotSystem(owner, attendant,parkingLot);
+        parkingLotSystem = new ParkingLotSystem(owner, attendant, parkingLot, availableLot);
         parkingLotSystem.createParkingLot();
         parkingLotSystem.addObserver(owner);
         vehicle = new Vehicle("MH13AN0808", "Bolero");
@@ -173,7 +173,7 @@ public class ParkingLotTest {
     //test for attendant park car whenever owner want
     @Test
     public void givenVehicle_WhenOwnerWantAttendant_ShouldParkTheCar() throws ParkingLotSystemException {
-        parkingLotSystem = new ParkingLotSystem(owner, attendant,parkingLot);
+        parkingLotSystem = new ParkingLotSystem(owner, attendant, parkingLot, availableLot);
         parkingLotSystem.createParkingLot();
         parkingLotSystem.addObserver(owner);
         vehicle = new Vehicle("MH13AN0808", "McLaren");
@@ -186,7 +186,7 @@ public class ParkingLotTest {
     //Test For Find The Vehicle Number
     @Test
     public void givenVehicle_WhenWantToFindCar_ShouldReturnGetNumberInParkingLot() throws ParkingLotSystemException {
-        parkingLotSystem = new ParkingLotSystem(owner, attendant,parkingLot);
+        parkingLotSystem = new ParkingLotSystem(owner, attendant, parkingLot, availableLot);
         parkingLotSystem.createParkingLot();
         parkingLotSystem.addObserver(owner);
         int TotalNumberOfCars = 9;
@@ -196,15 +196,15 @@ public class ParkingLotTest {
         }
         Vehicle vehicle2 = new Vehicle("55", "Thar");
         parkingLotSystem.park(vehicle2);
-        int numberInParkingLot = parkingLotSystem.getMyCarParkingNumber(vehicle2);
-        Assert.assertEquals(9, numberInParkingLot);
+        String numberInParkingLot = parkingLotSystem.getMyCarParkingNumber(vehicle2);
+        Assert.assertEquals("P303", numberInParkingLot);
     }
 
     //Test For Charging The Vehicle When Its Park
     @Test
     public void givenVehicleParkInLot_WhenCharge_ThenReturnTrue() {
         try {
-            parkingLotSystem = new ParkingLotSystem(owner, attendant,parkingLot);
+            parkingLotSystem = new ParkingLotSystem(owner, attendant, parkingLot, availableLot);
             parkingLotSystem.createParkingLot();
             parkingLotSystem.addObserver(owner);
             Vehicle vehicle = new Vehicle("100", "Benz");
