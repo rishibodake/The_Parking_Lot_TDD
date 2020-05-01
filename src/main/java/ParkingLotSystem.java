@@ -7,7 +7,7 @@ public class ParkingLotSystem {
     String isFull;
     int parkingLotSize = 10;
     private List<Observer> observerList = new ArrayList<>();
-    private int numberOfSlot;
+    private int numberOfSlot = 1;
 
     //Constructor With Parameter
          public ParkingLotSystem(Owner owner, Attendant attendant) {
@@ -39,12 +39,10 @@ public class ParkingLotSystem {
 
           //Function That park The Given Vehicle Into ParkingLot
           public void park(Vehicle vehicle) throws ParkingLotSystemException {
-                boolean isAvailable = owner.isAvailable(parkingLot, parkingLotSize);
-                if (isAvailable) {
-                    attendant.park(parkingLot, vehicle);
-                    owner.setParkingCharge(vehicle.getVehicleNumber()+" Rupees 10");//Function To set Charge For Parking
-                }
-                if (parkingLot.size() == parkingLotSize)
+              String getKey = owner.isAvailable(parkingLot, parkingLotSize);
+              attendant.park(parkingLot, vehicle, getKey);
+
+              if (!parkingLot.containsValue(null))
                     setStatus("Full");
           }
 
