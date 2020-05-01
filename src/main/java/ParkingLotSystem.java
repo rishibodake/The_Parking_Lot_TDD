@@ -7,7 +7,9 @@ public class ParkingLotSystem {
     String isFull;
     int parkingLotSize = 10;
     private List<Observer> observerList = new ArrayList<>();
-        //Constructor With Parameter
+    private int numberOfSlot;
+
+    //Constructor With Parameter
          public ParkingLotSystem(Owner owner, Attendant attendant) {
         this.owner = owner;
         this.attendant = attendant;
@@ -75,6 +77,28 @@ public class ParkingLotSystem {
                     List<String> listKeys = new ArrayList<String>(keys);
                     return listKeys.indexOf(vehicle.getVehicleNumber());
                 }
+
+    public void createParkingLot() {
+        int counter = 1, index = 0, slot = 1, length = 0, slotCapacity = 0;
+        while (index != parkingLotSize) {
+            slotCapacity = parkingLotSize / numberOfSlot;
+            if (parkingLotSize % numberOfSlot != 0)
+                slotCapacity += 1;
+            if (counter == slotCapacity + 1) {
+                counter = 1;
+                slot++;
+            }
+            String number1 = Integer.toString(counter);
+            length = number1.length();
+            if (length == 1) {
+                number1 = "0" + number1;
+            }
+            String key = "P" + Integer.toString(slot) + number1;
+            parkingLot.put(key, null);
+            index++;
+            counter++;
+        }
     }
+}
 
 
