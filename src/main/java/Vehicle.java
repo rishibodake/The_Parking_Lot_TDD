@@ -6,12 +6,4 @@ public class Vehicle {
         this.vehicleNumber = vehicleNumber;
         this.name = name;
     }
-//Getter
-    public String getVehicleNumber() {
-        return vehicleNumber;
-    }
-    public String getName()
-    {
-        return name;
-    }
 }

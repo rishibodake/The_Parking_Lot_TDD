@@ -1,4 +1,6 @@
+import java.util.Iterator;
 import java.util.LinkedHashMap;
+import java.util.Map;
 
 public class Owner implements Observer,Availability {
     private String parkingLotStatus;
@@ -19,21 +21,30 @@ public class Owner implements Observer,Availability {
     }
 
     @Override
-    public boolean isPresent(LinkedHashMap<String,Vehicle> parkingLot, Vehicle vehicle) throws ParkingLotSystemException {
-        if (vehicle == null)
+    public String isPresent(LinkedHashMap<String, Vehicle> parkingLot, Vehicle vehicle) throws ParkingLotSystemException {
+        if (vehicle == null) {
             throw new ParkingLotSystemException(ParkingLotSystemException.ExceptionType.NO_SUCH_A_VEHICLE, "No such a vehicle");
-        else if (parkingLot.containsKey(vehicle.getVehicleNumber()))
-            return true;
-        return false;
+        }
+        Iterator<String> itr = parkingLot.keySet().iterator();
+        while (itr.hasNext()) {
+            String key = itr.next();
+            if (parkingLot.get(key) == vehicle)
+                return key;
+        }
+        return null;
     }
     @Override
-    public boolean isAvailable(LinkedHashMap<String,Vehicle> parkingLot, int parkingLotSize) throws ParkingLotSystemException {
-        if (parkingLot.size() < parkingLotSize) {
-            return true;
-        } else if (parkingLot.size() == parkingLotSize) {
+    public String isAvailable(Map<String, Vehicle> parkingLot, int parkingLotCapacity) throws ParkingLotSystemException {
+        if (!parkingLot.containsValue(null)) {
             throw new ParkingLotSystemException(ParkingLotSystemException.ExceptionType.PARKING_LOT_IS_FULL, "Parking lot is full");
         }
-        return false;
+        Iterator<String> itr = parkingLot.keySet().iterator();
+        while (itr.hasNext()) {
+            String key = itr.next();
+            if (parkingLot.get(key) == null)
+                return key;
+        }
+        return null;
     }
 
     public void setParkingCharge(String parkingCharge) {
