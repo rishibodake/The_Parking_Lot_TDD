@@ -15,7 +15,6 @@ public class ParkingLotTest {
 
     @Before
     public void setUp() {
-        parkingLotSystem = new ParkingLotSystem();
         owner = new Owner();
         airportSecurity = new AirportSecurity();
         attendant = new Attendant();
@@ -142,7 +141,7 @@ public class ParkingLotTest {
         parkingLotSystem.createParkingLot();
         parkingLotSystem.addObserver(owner);
         parkingLotSystem.addObserver(airportSecurity);
-        int numberOfCars = 9;
+        int numberOfCars = 8;
         for (int vehicleIteration = 0; vehicleIteration < numberOfCars; vehicleIteration++) {
             Vehicle vehicle = new Vehicle(Integer.toString(vehicleIteration), "Audi");
             parkingLotSystem.park(vehicle);
