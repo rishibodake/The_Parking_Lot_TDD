@@ -73,7 +73,13 @@ public class ParkingLotSystem {
             public int getMyCarParkingNumber(Vehicle vehicle) {
                     Set<String> keys = parkingLot.keySet();
                     List<String> listKeys = new ArrayList<String>(keys);
-                    return listKeys.indexOf(vehicle.getVehicleNumber());
+                Iterator<String> itr = parkingLot.keySet().iterator();
+                while (itr.hasNext()) {
+                    String key = itr.next();
+                    if (parkingLot.get(key) == vehicle)
+                        return listKeys.indexOf(key);
+                }
+                return 0;
                 }
 
     public void createParkingLot() {
