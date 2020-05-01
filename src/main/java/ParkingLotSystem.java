@@ -17,7 +17,13 @@ public class ParkingLotSystem {
 
          }
 
-        //Function That Add Observer Into InterFace Observer
+    public ParkingLotSystem(Owner owner, Attendant attendant, LinkedHashMap<String, Vehicle> parkingLot) {
+        this.owner = owner;
+        this.attendant = attendant;
+        this.parkingLot = parkingLot;
+    }
+
+    //Function That Add Observer Into InterFace Observer
          public void addObserver(Observer iObservable) {
             this.observerList.add(iObservable);
          }
