@@ -1,6 +1,7 @@
 import java.util.*;
 
 public class ParkingLotSystem {
+     LinkedHashMap availableLot = null;
     Attendant attendant = null;
     Owner owner = new Owner();
     LinkedHashMap<String, Vehicle> parkingLot = new LinkedHashMap();
@@ -19,10 +20,12 @@ public class ParkingLotSystem {
 
          }
 
-    public ParkingLotSystem(Owner owner, Attendant attendant, LinkedHashMap<String, Vehicle> parkingLot) {
+    public ParkingLotSystem(Owner owner, Attendant attendant, LinkedHashMap<String, Vehicle> parkingLot,LinkedHashMap availableLot) {
         this.owner = owner;
         this.attendant = attendant;
         this.parkingLot = parkingLot;
+        this.availableLot = availableLot;
+
     }
 
     //Function That Add Observer Into InterFace Observer
