@@ -52,14 +52,15 @@ public class ParkingLotSystem {
               attendant.unPark(parkingLot, getKey);
               if (parkingLot.containsValue(null)) {
                   setStatus("Have Space");
-                    setStatus("Have Space");
-            }
+                  setStatus("Have Space");
+              }
+          }
 
            //Function That check whether the given vehicle is Parked in parkingLot
              public boolean isVehicleParked (Vehicle vehicle){
-                if (parkingLot.containsKey(vehicle.getVehicleNumber()))
-                    return false;
-                return true;
+                  if (parkingLot.containsValue(vehicle))
+                      return true;
+                  return false;
              }
 
             //Function That check whether the given vehicle is Parked in parkingLot
