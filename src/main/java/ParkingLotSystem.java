@@ -48,19 +48,18 @@ public class ParkingLotSystem {
 
           //Function That unpark The given vehicle from The Parking Lot
           public void unPark(Vehicle vehicle) throws ParkingLotSystemException {
-                boolean isPresent = owner.isPresent(parkingLot, vehicle);
-                if (isPresent) {
-                    attendant.unPark(parkingLot, vehicle);
-                }
-                if (parkingLot.size() < parkingLotSize)
+              String getKey = owner.isPresent(parkingLot, vehicle);
+              attendant.unPark(parkingLot, getKey);
+              if (parkingLot.containsValue(null)) {
+                  setStatus("Have Space");
                     setStatus("Have Space");
             }
 
            //Function That check whether the given vehicle is Parked in parkingLot
              public boolean isVehicleParked (Vehicle vehicle){
                 if (parkingLot.containsKey(vehicle.getVehicleNumber()))
-                    return true;
-                return false;
+                    return false;
+                return true;
              }
 
             //Function That check whether the given vehicle is Parked in parkingLot
