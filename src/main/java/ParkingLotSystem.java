@@ -10,23 +10,13 @@ public class ParkingLotSystem {
     private List<Observer> observerList = new ArrayList<>();
     private int numberOfSlot = 4;
 
-    //Constructor With Parameter
-         public ParkingLotSystem(Owner owner, Attendant attendant) {
-        this.owner = owner;
-        this.attendant = attendant;
-         }
-        //Default Constructor
-         public ParkingLotSystem() {
-
-         }
-
     public ParkingLotSystem(Owner owner, Attendant attendant, LinkedHashMap<String, Vehicle> parkingLot,LinkedHashMap availableLot) {
         this.owner = owner;
         this.attendant = attendant;
         this.parkingLot = parkingLot;
         this.availableLot = availableLot;
 
-    }
+         }
 
     //Function That Add Observer Into InterFace Observer
          public void addObserver(Observer iObservable) {
@@ -72,7 +62,6 @@ public class ParkingLotSystem {
                     return true;
                 return false;
             }
-
             public String getMyCarParkingNumber(Vehicle vehicle) {
 
                 Iterator<String> itr = parkingLot.keySet().iterator();
@@ -83,7 +72,7 @@ public class ParkingLotSystem {
                 }
                 return null;
                 }
-
+    //This Function Is Responcible To Distribute The PArking Lot Evanly
     public void createParkingLot() {
         int counter = 1, index = 0, slot = 1, length = 0, slotCapacity = 0;
         while (index != parkingLotSize) {

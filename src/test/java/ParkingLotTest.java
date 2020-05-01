@@ -13,8 +13,6 @@ public class ParkingLotTest {
     LinkedHashMap<String, Vehicle> parkingLot = null;
     LinkedHashMap<String, Integer> availableLot = null;
 
-
-
     @Before
     public void setUp() {
         owner = new Owner();
@@ -111,7 +109,7 @@ public class ParkingLotTest {
 
         }
     }
-
+    //Test For Inform owner When Parking Lot Is Full
     @Test
     public void givenAVehicles_WhenParkingLotIsFull_ShouldInformToOwner(){
         try {
@@ -216,7 +214,7 @@ public class ParkingLotTest {
             e.printStackTrace();
         }
     }
-
+    //Test For Distribute The Parking Lot Evenly
     @Test
     public void givenVehicle_WhenOwnerWantAttendant_ShouldEvenlyDistributeCar() throws ParkingLotSystemException {
         parkingLotSystem = new ParkingLotSystem(owner, attendant, parkingLot, availableLot);
