@@ -11,6 +11,8 @@ public class ParkingLotTest {
     AirportSecurity airportSecurity = null;
     Attendant attendant = null;
     LinkedHashMap<String, Vehicle> parkingLot = null;
+    LinkedHashMap<String, Integer> availableLot = null;
+
 
 
     @Before
@@ -19,7 +21,7 @@ public class ParkingLotTest {
         airportSecurity = new AirportSecurity();
         attendant = new Attendant();
         parkingLot = new LinkedHashMap();
-
+        availableLot = new LinkedHashMap<String, Integer>();
     }
     //Test For Park The Vehicle
     @Test
@@ -213,6 +215,25 @@ public class ParkingLotTest {
         {
             e.printStackTrace();
         }
+    }
+
+    @Test
+    public void givenVehicle_WhenOwnerWantAttendant_ShouldEvenlyDistributeCar() throws ParkingLotSystemException {
+        parkingLotSystem = new ParkingLotSystem(owner, attendant, parkingLot, availableLot);
+        parkingLotSystem.createParkingLot();
+        parkingLotSystem.addObserver(owner);
+        int numberOfCars = 9;
+        for (int i = 0; i < numberOfCars; i++) {
+            Vehicle vehicle = new Vehicle(Integer.toString(i), "BMW");
+            parkingLotSystem.park(vehicle);
+        }
+        Vehicle vehicle2 = new Vehicle("55", "Thur");
+        parkingLotSystem.park(vehicle2);
+        Vehicle vehicle3 = new Vehicle("75", "Thur");
+        parkingLotSystem.park(vehicle3);
+        parkingLotSystem.unPark(vehicle3);
+        String numberInParkingLot = parkingLotSystem.getMyCarParkingNumber(vehicle2);
+        Assert.assertEquals("P303", numberInParkingLot);
     }
 }
 
