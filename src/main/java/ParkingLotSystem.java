@@ -32,8 +32,8 @@ public class ParkingLotSystem {
 
           //Function That park The Given Vehicle Into ParkingLot
           public void park(Vehicle vehicle) throws ParkingLotSystemException {
-              String getKey = owner.isAvailable(parkingLot, parkingLotSize);
-              attendant.park(parkingLot, vehicle, getKey);
+              owner.isAvailable(parkingLot, parkingLotCapacity);
+              attendant.park(parkingLot, vehicle, availableLot);
 
               if (!parkingLot.containsValue(null))
                     setStatus("Full");
@@ -41,8 +41,8 @@ public class ParkingLotSystem {
 
           //Function That unpark The given vehicle from The Parking Lot
           public void unPark(Vehicle vehicle) throws ParkingLotSystemException {
-              String getKey = owner.isPresent(parkingLot, vehicle);
-              attendant.unPark(parkingLot, getKey);
+              owner.isPresent(parkingLot, vehicle);
+              attendant.unPark(parkingLot, vehicle, availableLot);
               if (parkingLot.containsValue(null)) {
                   setStatus("Have Space");
                   setStatus("Have Space");
