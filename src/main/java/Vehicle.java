@@ -1,18 +1,18 @@
 public class Vehicle {
-    public  DriverType driverType;
+    private Driver driver;
     private  String vehicleNumber;
     private  String name;
     enum DriverType {
         HANDICAP,NORMAL
     }
 //Constructor For With parameter
-    public Vehicle(String vehicleNumber, String name,DriverType driverType) {
+    public Vehicle(String vehicleNumber, String name,Driver driver) {
         this.vehicleNumber = vehicleNumber;
         this.name = name;
-        this.driverType = driverType;
+        this.driver = driver;
     }
 
-    public DriverType getDriverType() {
-        return driverType;
+    public Driver getDriver() {
+        return driver;
     }
 }
