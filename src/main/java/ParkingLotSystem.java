@@ -45,7 +45,6 @@ public class ParkingLotSystem {
               attendant.unPark(parkingLot, vehicle, availableLot);
               if (parkingLot.containsValue(null)) {
                   setStatus("Have Space");
-                  setStatus("Have Space");
               }
           }
 
