@@ -21,30 +21,16 @@ public class Owner implements Observer,Availability {
     }
 
     @Override
-    public String isPresent(LinkedHashMap<String, Vehicle> parkingLot, Vehicle vehicle) throws ParkingLotSystemException {
+    public void isPresent(LinkedHashMap<String, Vehicle> parkingLot, Vehicle vehicle) throws ParkingLotSystemException {
         if (vehicle == null) {
             throw new ParkingLotSystemException(ParkingLotSystemException.ExceptionType.NO_SUCH_A_VEHICLE, "No such a vehicle");
         }
-        Iterator<String> itr = parkingLot.keySet().iterator();
-        while (itr.hasNext()) {
-            String key = itr.next();
-            if (parkingLot.get(key) == vehicle)
-                return key;
-        }
-        return null;
     }
     @Override
-    public String isAvailable(Map<String, Vehicle> parkingLot, int parkingLotCapacity) throws ParkingLotSystemException {
+    public void isAvailable(Map<String, Vehicle> parkingLot, int parkingLotCapacity) throws ParkingLotSystemException {
         if (!parkingLot.containsValue(null)) {
             throw new ParkingLotSystemException(ParkingLotSystemException.ExceptionType.PARKING_LOT_IS_FULL, "Parking lot is full");
         }
-        Iterator<String> itr = parkingLot.keySet().iterator();
-        while (itr.hasNext()) {
-            String key = itr.next();
-            if (parkingLot.get(key) == null)
-                return key;
-        }
-        return null;
     }
 
     public void setParkingCharge(String parkingCharge) {
