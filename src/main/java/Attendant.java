@@ -4,6 +4,8 @@ public class Attendant {
 
     private String vehicleKey;
     private String parkMethod = "PARK";
+    int value;
+    private String unParkMethod = "Un_Park";
 
     public void park(HashMap<String, Vehicle> parkingLot, Vehicle vehicle, LinkedHashMap<String, Integer> availableLot) {
         String keyAvailable = Collections.max(availableLot.entrySet(), Map.Entry.comparingByValue()).getKey();
@@ -22,8 +24,24 @@ public class Attendant {
         }
             }
 
+    public void updateAvailableLot(LinkedHashMap<String, Integer> availableLot, String vehicleKey, String method) {
+        Iterator<String> availableLotItr = availableLot.keySet().iterator();
+        while (availableLotItr.hasNext()) {
+            String availableKey = availableLotItr.next();
+            if (vehicleKey.substring(0, 2).equals(availableKey) && method == parkMethod) {
+                value = (availableLot.get(availableKey) - 1);
+                availableLot.replace(availableKey, value);
+                break;
+            } else if (vehicleKey.substring(0, 2).equals(availableKey) && method == unParkMethod) {
+                value = (availableLot.get(availableKey) + 1);
+                availableLot.replace(availableKey, value);
+                break;
+            }
+        }
 
-    public void unPark(LinkedHashMap<String, Vehicle> parkingLot, Vehicle vehicle, LinkedHashMap<String, Integer> availableLot) {
+
+
+        public void unPark(LinkedHashMap<String, Vehicle> parkingLot, Vehicle vehicle, LinkedHashMap<String, Integer> availableLot) {
         Iterator<String> parkingLotItr = parkingLot.keySet().iterator();
         while (parkingLotItr.hasNext()) {
             String key = parkingLotItr.next();
