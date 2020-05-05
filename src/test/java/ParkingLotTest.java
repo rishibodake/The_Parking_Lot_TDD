@@ -233,5 +233,24 @@ public class ParkingLotTest {
         String numberInParkingLot = parkingLotSystem.getMyCarParkingNumber(vehicle2);
         Assert.assertEquals("P303", numberInParkingLot);
     }
+
+    @Test
+    public void givenVehicle_WhenHandicapDriverWantAttendant_ShouldGiveNearestFreeSpace() throws ParkingLotSystemException {
+        int numberOfCars = 9;
+        parkingLotSystem = new ParkingLotSystem(owner, attendant, parkingLot, availableLot);
+        parkingLotSystem.createParkingLot();
+        parkingLotSystem.addObserver(owner);
+        Vehicle vehicle2 = new Vehicle("55", "Thar", Vehicle.DriverType.NORMAL);
+        parkingLotSystem.park(vehicle2);
+        Vehicle vehicle3 = new Vehicle("75", "Thar", Vehicle.DriverType.HANDICAP);
+        parkingLotSystem.park(vehicle3);
+        for (int index = 0; index < numberOfCars; index++) {
+            Vehicle vehicle = new Vehicle(Integer.toString(index), "BMW", Vehicle.DriverType.NORMAL);
+            parkingLotSystem.park(vehicle);
+        }
+        parkingLotSystem.unPark(vehicle3);
+        String numberInParkingLot = parkingLotSystem.getMyCarParkingNumber(vehicle2);
+        Assert.assertEquals("P101", numberInParkingLot);
+    }
 }
 
