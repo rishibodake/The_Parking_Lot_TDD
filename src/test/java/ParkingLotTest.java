@@ -92,7 +92,7 @@ public class ParkingLotTest {
                 Vehicle vehicle = new Vehicle(Integer.toString(vehicleIteration), "Audi",new Driver(Driver.DriverType.NORMAL));
                 parkingLotSystem.park(vehicle);
             }
-            vehicle = new Vehicle("MH13AN0808", "Bolero",Vehicle.DriverType.NORMAL);
+            vehicle = new Vehicle("MH13AN0808", "Bolero",new Driver(Driver.DriverType.NORMAL));
             parkingLotSystem.park(vehicle);
             boolean isUnParked = parkingLotSystem.isVehicleUnParked(vehicle);
             Assert.assertEquals(false, isUnParked);
@@ -146,7 +146,7 @@ public class ParkingLotTest {
             Vehicle vehicle = new Vehicle(Integer.toString(vehicleIteration), "Audi",new Driver(Driver.DriverType.NORMAL));
             parkingLotSystem.park(vehicle);
         }
-        vehicle = new Vehicle("MH13AN0808", "Bolero",Vehicle.DriverType.NORMAL);
+        vehicle = new Vehicle("MH13AN0808", "Bolero",new Driver(Driver.DriverType.NORMAL));
         parkingLotSystem.park(vehicle);
         Vehicle vehicle1 = new Vehicle("MH10BQ8109", "Marshal",new Driver(Driver.DriverType.NORMAL));
         parkingLotSystem.park(vehicle1);
