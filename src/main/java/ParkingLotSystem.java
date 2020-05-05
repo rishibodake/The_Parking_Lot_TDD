@@ -32,7 +32,7 @@ public class ParkingLotSystem {
 
           //Function That park The Given Vehicle Into ParkingLot
           public void park(Vehicle vehicle) throws ParkingLotSystemException {
-              owner.isAvailable(parkingLot, parkingLotCapacity);
+              owner.isAvailable(parkingLot, parkingLotSize);
               attendant.park(parkingLot, vehicle, availableLot);
 
               if (!parkingLot.containsValue(null))
