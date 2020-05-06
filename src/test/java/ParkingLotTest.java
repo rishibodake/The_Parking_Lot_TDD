@@ -252,5 +252,26 @@ public class ParkingLotTest {
         String numberInParkingLot = parkingLotSystem.getMyCarParkingNumber(vehicle3);
         Assert.assertEquals("P101", numberInParkingLot);
     }
+
+    //Test To Direct Large Vehicles To The Lot Which Has Max Space
+    @Test
+    public void givenVehicle_WhenOwnerWantAttendant_ShouldDirectLargeVehicleToHighestNumberOfFreeSpace() throws ParkingLotSystemException {
+        int numberOfCars = 9;
+        parkingLotSystem = new ParkingLotSystem(owner, attendant, parkingLot, availableLot);
+        parkingLotSystem.createParkingLot();
+        parkingLotSystem.addObserver(owner);
+        Vehicle vehicle2 = new Vehicle("5", "Alto", new Driver(Driver.DriverType.NORMAL), Vehicle.VehicleType.SMALL);
+        parkingLotSystem.park(vehicle2);
+        Vehicle vehicle3 = new Vehicle("7", "tata prima", new Driver(Driver.DriverType.NORMAL), Vehicle.VehicleType.LARGE);
+        parkingLotSystem.park(vehicle3);
+        for (int index = 0; index < numberOfCars; index++) {
+            Vehicle vehicle = new Vehicle(Integer.toString(index), "BMW", new Driver(Driver.DriverType.NORMAL), Vehicle.VehicleType.SMALL);
+            parkingLotSystem.park(vehicle);
+        }
+        parkingLotSystem.unPark(vehicle3);
+        String numberInParkingLot = parkingLotSystem.getMyCarParkingNumber(vehicle2);
+        Assert.assertEquals("P101", numberInParkingLot);
+    }
+
 }
 
