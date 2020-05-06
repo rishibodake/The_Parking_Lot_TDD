@@ -2,8 +2,8 @@ public class Vehicle {
     private Driver driver;
     private  String vehicleNumber;
     private  String name;
-    enum DriverType {
-        HANDICAP,NORMAL
+    enum VehicleType {
+        SMALL, LARGE
     }
 //Constructor For With parameter
     public Vehicle(String vehicleNumber, String name,Driver driver) {
