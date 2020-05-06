@@ -13,7 +13,9 @@ public class Vehicle {
         this.driver = driver;
         this.vehicleType = vehicleType;
     }
-
+    public Driver getDriver() {
+        return driver;
+    }
     public VehicleType getDriverType() {
         return vehicleType;
     }
