@@ -4,10 +4,12 @@ public class Vehicle {
     private  String vehicleNumber;
     private  String name;
     private VehicleType vehicleType;
+    private String vehicleId;
 
-    public Color getColor() {
-        return color;
+    public Vehicle getVehicleType() {
+        this.vehicleType = vehicleType;
     }
+
 
     //ENUM for the type of vehicle
     enum VehicleType {
@@ -26,6 +28,17 @@ public class Vehicle {
         this.vehicleType = vehicleType;
         this.color = color;
     }
+    public Color getColor() {
+        return color;
+    }
+    public String getName() {
+        return name;
+    }
+
+    public String getVehicleId() {
+        return vehicleId;
+    }
+
 
     public Driver getDriver() {
         return driver;
