@@ -1,8 +1,7 @@
 import java.util.*;
 
 public class ParkingLotSystem {
-     LinkedHashMap availableLot = null ;
-    Attendant attendant = null;
+    LinkedHashMap availableLot = null ;
     Owner owner = new Owner();
     LinkedHashMap<String, Vehicle> parkingLot = new LinkedHashMap();
     String isFull;
