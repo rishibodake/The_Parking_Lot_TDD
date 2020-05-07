@@ -1,4 +1,5 @@
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class ParkingLotSystem {
     LinkedHashMap availableLot = null ;
@@ -9,6 +10,8 @@ public class ParkingLotSystem {
     private List<Observer> observerList = new ArrayList<>();
     private int numberOfSlot = 4;
     ParkingLot parkingLotHandler = null;
+    Map<String,Vehicle> listForPoliceDepartment = new HashMap<>();
+
 
     public ParkingLotSystem(Owner owner, ParkingLot parkingLotHandler, LinkedHashMap<String, Vehicle> parkingLot,LinkedHashMap availableLot) {
         this.owner = owner;
@@ -92,6 +95,11 @@ public class ParkingLotSystem {
             if (slot == numberOfSlot)
                 availableLot.put("P" + slot, counter - 1);
         }
+    }
+
+    public Map<String, Vehicle> getRecordsByVehicleColorForPolice(Vehicle.Color color) {
+        return listForPoliceDepartment = parkingLot.entrySet().stream().filter(entry -> color.equals(entry.getValue().getColor()))
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
     }
 }
 
