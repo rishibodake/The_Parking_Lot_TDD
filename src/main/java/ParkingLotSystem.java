@@ -11,6 +11,8 @@ public class ParkingLotSystem {
     private int numberOfSlot = 4;
     ParkingLot parkingLotHandler = null;
     Map<String,Vehicle> listForPoliceDepartment = new HashMap<>();
+    String lotName[] = new String[25];
+
 
 
     public ParkingLotSystem(Owner owner, ParkingLot parkingLotHandler, LinkedHashMap<String, Vehicle> parkingLot,LinkedHashMap availableLot) {
@@ -74,12 +76,14 @@ public class ParkingLotSystem {
     //This Function Is Responcible To Distribute The PArking Lot Evanly
     public void createParkingLot() {
         int counter = 1, index = 0, slot = 1, length = 0, slotCapacity = 0;
+        String letters = "A B C D E F G H I J K L M N O P Q R S T U V W X Y Z";
+        lotName = letters.split(" ");
         while (index != parkingLotSize) {
             slotCapacity = parkingLotSize / numberOfSlot;
             if (parkingLotSize % numberOfSlot != 0)
                 slotCapacity += 1;
             if (counter == slotCapacity + 1) {
-                availableLot.put("P" + slot, counter - 1);
+                availableLot.put(lotName[slot - 1], counter - 1);
                 counter = 1;
                 slot++;
             }
@@ -88,12 +92,12 @@ public class ParkingLotSystem {
             if (length == 1) {
                 number1 = "0" + number1;
             }
-            String key = "P" + slot + number1;
+            String key = lotName[slot - 1] + number1;
             parkingLot.put(key, null);
             index++;
             counter++;
             if (slot == numberOfSlot)
-                availableLot.put("P" + slot, counter - 1);
+                availableLot.put(lotName[slot - 1], counter - 1);
         }
     }
 

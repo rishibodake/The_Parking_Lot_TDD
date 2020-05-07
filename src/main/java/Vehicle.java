@@ -5,6 +5,10 @@ public class Vehicle {
     private  String name;
     private VehicleType vehicleType;
 
+    public Color getColor() {
+        return color;
+    }
+
     //ENUM for the type of vehicle
     enum VehicleType {
         SMALL, LARGE
