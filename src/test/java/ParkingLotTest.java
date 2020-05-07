@@ -12,6 +12,8 @@ public class ParkingLotTest {
     Attendant attendant = null;
     LinkedHashMap<String, Vehicle> parkingLot = null;
     LinkedHashMap<String, Integer> availableLot = null;
+    ParkingLot parkingLotHandler = null;
+
 
     @Before
     public void setUp() {
@@ -20,11 +22,13 @@ public class ParkingLotTest {
         attendant = new Attendant();
         parkingLot = new LinkedHashMap();
         availableLot = new LinkedHashMap<String, Integer>();
+        parkingLotHandler = new ParkingLot();
+
     }
     //Test For Park The Vehicle
     @Test
     public void givenAVehicle_WhenParked_ShouldReturnTrue() throws ParkingLotSystemException {
-        parkingLotSystem = new ParkingLotSystem(owner, attendant, parkingLot, availableLot);
+        parkingLotSystem = new ParkingLotSystem(owner, parkingLotHandler, parkingLot, availableLot);
         parkingLotSystem.createParkingLot();
         vehicle = new Vehicle("MH11N2318","Swift",new Driver(Driver.DriverType.NORMAL),Vehicle.VehicleType.SMALL);
         parkingLotSystem.park(vehicle);
@@ -34,7 +38,7 @@ public class ParkingLotTest {
     //Test For Check If Already vehicle is parked
     @Test
     public void givenAVehicle_WhenAlreadyParked_ShouldReturnFalse() throws ParkingLotSystemException{
-        parkingLotSystem = new ParkingLotSystem(owner, attendant, parkingLot, availableLot);
+        parkingLotSystem = new ParkingLotSystem(owner, parkingLotHandler, parkingLot, availableLot);
         parkingLotSystem.createParkingLot();
         vehicle = new Vehicle("MH15AN0101", "Alto",new Driver(Driver.DriverType.NORMAL),Vehicle.VehicleType.SMALL);
         Vehicle vehicle1 = new Vehicle("MH17BW9898", "Jeep",new Driver(Driver.DriverType.NORMAL),Vehicle.VehicleType.SMALL);
@@ -45,7 +49,7 @@ public class ParkingLotTest {
     //Test For UnPark The Vehicle
     @Test
     public void givenAVehicle_WhenUnParked_ReturnTrue() throws ParkingLotSystemException {
-        parkingLotSystem = new ParkingLotSystem(owner, attendant, parkingLot, availableLot);
+        parkingLotSystem = new ParkingLotSystem(owner, parkingLotHandler, parkingLot, availableLot);
         parkingLotSystem.createParkingLot();
         vehicle = new Vehicle("MH15AN0101", "Alto",new Driver(Driver.DriverType.NORMAL),Vehicle.VehicleType.SMALL);
         parkingLotSystem.park(vehicle);
@@ -58,7 +62,7 @@ public class ParkingLotTest {
     @Test
     public void givenANullVehicle_WhenUnParked_ShouldThrowException(){
         try {
-            parkingLotSystem = new ParkingLotSystem(owner, attendant, parkingLot, availableLot);
+            parkingLotSystem = new ParkingLotSystem(owner, parkingLotHandler, parkingLot, availableLot);
             parkingLotSystem.createParkingLot();
             vehicle = new Vehicle("MH15AN0101", "Alto",new Driver(Driver.DriverType.NORMAL),Vehicle.VehicleType.SMALL);
             parkingLotSystem.park(vehicle);
@@ -73,7 +77,7 @@ public class ParkingLotTest {
     //Check parked vehicle for unParking
     @Test
     public void givenAVehicle_WhenAlreadyParkedAndCheckIfUnPark_ShouldReturnFalse() throws ParkingLotSystemException {
-        parkingLotSystem = new ParkingLotSystem(owner, attendant, parkingLot, availableLot);
+        parkingLotSystem = new ParkingLotSystem(owner, parkingLotHandler, parkingLot, availableLot);
         parkingLotSystem.createParkingLot();
         vehicle = new Vehicle("MH15AN0101", "Alto",new Driver(Driver.DriverType.NORMAL),Vehicle.VehicleType.SMALL);
         parkingLotSystem.park(vehicle);
@@ -85,7 +89,7 @@ public class ParkingLotTest {
     @Test
     public void givenAVehicles_WhenParkingLotIsFull_ShouldThrowException() {
         try {
-            parkingLotSystem = new ParkingLotSystem(owner, attendant, parkingLot, availableLot);
+            parkingLotSystem = new ParkingLotSystem(owner, parkingLotHandler, parkingLot, availableLot);
             parkingLotSystem.createParkingLot();
             int numberOfCars = 8;
             for (int vehicleIteration = 0; vehicleIteration < numberOfCars; vehicleIteration++) {
@@ -113,7 +117,7 @@ public class ParkingLotTest {
     @Test
     public void givenAVehicles_WhenParkingLotIsFull_ShouldInformToOwner(){
         try {
-            parkingLotSystem = new ParkingLotSystem(owner, attendant, parkingLot, availableLot);
+            parkingLotSystem = new ParkingLotSystem(owner, parkingLotHandler, parkingLot, availableLot);
             parkingLotSystem.createParkingLot();
             parkingLotSystem.addObserver(owner);
             int numberOfCars = 8;
@@ -137,7 +141,7 @@ public class ParkingLotTest {
     //Test To Inform Airport Security
     @Test
     public void givenAVehicles_WhenParkingLotIsFull_ShouldInformToAirportSecurityAndOwner() throws ParkingLotSystemException {
-        parkingLotSystem = new ParkingLotSystem(owner, attendant, parkingLot, availableLot);
+        parkingLotSystem = new ParkingLotSystem(owner, parkingLotHandler, parkingLot, availableLot);
         parkingLotSystem.createParkingLot();
         parkingLotSystem.addObserver(owner);
         parkingLotSystem.addObserver(airportSecurity);
@@ -157,7 +161,7 @@ public class ParkingLotTest {
     //Test Case When The Parking Lot Has Space Again
     @Test
     public void givenAVehicles_WhenParkingLotHasSpaceAgain_ShouldInformToParkingLotOwner() throws ParkingLotSystemException {
-        parkingLotSystem = new ParkingLotSystem(owner, attendant, parkingLot, availableLot);
+        parkingLotSystem = new ParkingLotSystem(owner, parkingLotHandler, parkingLot, availableLot);
         parkingLotSystem.createParkingLot();
         parkingLotSystem.addObserver(owner);
         vehicle = new Vehicle("MH13AN0808", "Bolero",new Driver(Driver.DriverType.NORMAL),Vehicle.VehicleType.SMALL);
@@ -171,7 +175,7 @@ public class ParkingLotTest {
     //test for attendant park car whenever owner want
     @Test
     public void givenVehicle_WhenOwnerWantAttendant_ShouldParkTheCar() throws ParkingLotSystemException {
-        parkingLotSystem = new ParkingLotSystem(owner, attendant, parkingLot, availableLot);
+        parkingLotSystem = new ParkingLotSystem(owner, parkingLotHandler, parkingLot, availableLot);
         parkingLotSystem.createParkingLot();
         parkingLotSystem.addObserver(owner);
         vehicle = new Vehicle("MH13AN0808", "McLaren",new Driver(Driver.DriverType.NORMAL),Vehicle.VehicleType.SMALL);
@@ -184,7 +188,7 @@ public class ParkingLotTest {
     //Test For Find The Vehicle Number
     @Test
     public void givenVehicle_WhenWantToFindCar_ShouldReturnGetNumberInParkingLot() throws ParkingLotSystemException {
-        parkingLotSystem = new ParkingLotSystem(owner, attendant, parkingLot, availableLot);
+        parkingLotSystem = new ParkingLotSystem(owner, parkingLotHandler, parkingLot, availableLot);
         parkingLotSystem.createParkingLot();
         parkingLotSystem.addObserver(owner);
         int TotalNumberOfCars = 8;
@@ -202,7 +206,7 @@ public class ParkingLotTest {
     @Test
     public void givenVehicleParkInLot_WhenCharge_ThenReturnTrue() {
         try {
-            parkingLotSystem = new ParkingLotSystem(owner, attendant, parkingLot, availableLot);
+            parkingLotSystem = new ParkingLotSystem(owner, parkingLotHandler, parkingLot, availableLot);
             parkingLotSystem.createParkingLot();
             parkingLotSystem.addObserver(owner);
             Vehicle vehicle = new Vehicle("100", "Benz",new Driver(Driver.DriverType.NORMAL),Vehicle.VehicleType.SMALL);
@@ -217,7 +221,7 @@ public class ParkingLotTest {
     //Test For Distribute The Parking Lot Evenly
     @Test
     public void givenVehicle_WhenOwnerWantAttendant_ShouldEvenlyDistributeCar() throws ParkingLotSystemException {
-        parkingLotSystem = new ParkingLotSystem(owner, attendant, parkingLot, availableLot);
+        parkingLotSystem = new ParkingLotSystem(owner, parkingLotHandler, parkingLot, availableLot);
         parkingLotSystem.createParkingLot();
         parkingLotSystem.addObserver(owner);
         int numberOfCars = 8;
@@ -237,7 +241,7 @@ public class ParkingLotTest {
     @Test
     public void givenVehicle_WhenHandicapDriverWantAttendant_ShouldGiveNearestFreeSpace() throws ParkingLotSystemException {
         int numberOfCars = 8;
-        parkingLotSystem = new ParkingLotSystem(owner, attendant, parkingLot, availableLot);
+        parkingLotSystem = new ParkingLotSystem(owner, parkingLotHandler, parkingLot, availableLot);
         parkingLotSystem.createParkingLot();
         parkingLotSystem.addObserver(owner);
         Vehicle vehicle2 = new Vehicle("55", "Thar", new Driver(Driver.DriverType.NORMAL),Vehicle.VehicleType.SMALL);
@@ -257,7 +261,7 @@ public class ParkingLotTest {
     @Test
     public void givenVehicle_WhenOwnerWantAttendant_ShouldDirectLargeVehicleToHighestNumberOfFreeSpace() throws ParkingLotSystemException {
         int numberOfCars = 8;
-        parkingLotSystem = new ParkingLotSystem(owner, attendant, parkingLot, availableLot);
+        parkingLotSystem = new ParkingLotSystem(owner, parkingLotHandler, parkingLot, availableLot);
         parkingLotSystem.createParkingLot();
         parkingLotSystem.addObserver(owner);
         Vehicle vehicle2 = new Vehicle("5", "Alto", new Driver(Driver.DriverType.NORMAL), Vehicle.VehicleType.SMALL);
