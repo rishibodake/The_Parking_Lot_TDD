@@ -6,8 +6,8 @@ public class Vehicle {
     private VehicleType vehicleType;
     private String vehicleId;
 
-    public Vehicle getVehicleType() {
-        this.vehicleType = vehicleType;
+    public VehicleType getVehicleType() {
+        return vehicleType;
     }
 
 

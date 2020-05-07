@@ -6,7 +6,7 @@ public class ParkingLotSystem {
     Owner owner = new Owner();
     LinkedHashMap<String, Vehicle> parkingLot = new LinkedHashMap();
     String isFull;
-    int parkingLotSize = 10;
+    int parkingLotSize = 11;
     private List<Observer> observerList = new ArrayList<>();
     private int numberOfSlot = 4;
     ParkingLot parkingLotHandler = null;

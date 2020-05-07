@@ -90,7 +90,7 @@ public class ParkingLotTest {
         try {
             parkingLotSystem = new ParkingLotSystem(owner, parkingLotHandler, parkingLot, availableLot);
             parkingLotSystem.createParkingLot();
-            int numberOfCars = 8;
+            int numberOfCars = 9;
             for (int vehicleIteration = 0; vehicleIteration < numberOfCars; vehicleIteration++) {
                 Vehicle vehicle = new Vehicle(Integer.toString(vehicleIteration), "Audi",new Driver(Driver.DriverType.NORMAL),Vehicle.VehicleType.SMALL,Vehicle.Color.BLUE);
                 parkingLotSystem.park(vehicle);
@@ -144,7 +144,7 @@ public class ParkingLotTest {
         parkingLotSystem.createParkingLot();
         parkingLotSystem.addObserver(owner);
         parkingLotSystem.addObserver(airportSecurity);
-        int numberOfCars = 8;
+        int numberOfCars = 9;
         for (int vehicleIteration = 0; vehicleIteration < numberOfCars; vehicleIteration++) {
             Vehicle vehicle = new Vehicle(Integer.toString(vehicleIteration), "Audi",new Driver(Driver.DriverType.NORMAL),Vehicle.VehicleType.SMALL,Vehicle.Color.BLUE);
             parkingLotSystem.park(vehicle);
@@ -190,7 +190,7 @@ public class ParkingLotTest {
         parkingLotSystem = new ParkingLotSystem(owner, parkingLotHandler, parkingLot, availableLot);
         parkingLotSystem.createParkingLot();
         parkingLotSystem.addObserver(owner);
-        int TotalNumberOfCars = 8;
+        int TotalNumberOfCars = 9;
         for (int vehicleIteration = 0; vehicleIteration < TotalNumberOfCars; vehicleIteration++) {
             Vehicle vehicle = new Vehicle(Integer.toString(vehicleIteration), "BMW",new Driver(Driver.DriverType.NORMAL),Vehicle.VehicleType.SMALL,Vehicle.Color.BLUE);
             parkingLotSystem.park(vehicle);
@@ -198,7 +198,7 @@ public class ParkingLotTest {
         Vehicle vehicle2 = new Vehicle("55", "Thar",new Driver(Driver.DriverType.NORMAL),Vehicle.VehicleType.SMALL,Vehicle.Color.BLUE);
         parkingLotSystem.park(vehicle2);
         String numberInParkingLot = parkingLotSystem.getMyCarParkingNumber(vehicle2);
-        Assert.assertEquals("P303", numberInParkingLot);
+        Assert.assertEquals("C03", numberInParkingLot);
     }
 
     //Test For Charging The Vehicle When Its Park
@@ -224,8 +224,8 @@ public class ParkingLotTest {
         parkingLotSystem.createParkingLot();
         parkingLotSystem.addObserver(owner);
         int numberOfCars = 8;
-        for (int i = 0; i < numberOfCars; i++) {
-            Vehicle vehicle = new Vehicle(Integer.toString(i), "BMW",new Driver(Driver.DriverType.NORMAL),Vehicle.VehicleType.SMALL,Vehicle.Color.BLUE);
+        for (int index = 0; index < numberOfCars; index++) {
+            Vehicle vehicle = new Vehicle(Integer.toString(index), "BMW",new Driver(Driver.DriverType.NORMAL),Vehicle.VehicleType.SMALL,Vehicle.Color.BLUE);
             parkingLotSystem.park(vehicle);
         }
         Vehicle vehicle2 = new Vehicle("55", "Thar",new Driver(Driver.DriverType.NORMAL),Vehicle.VehicleType.SMALL,Vehicle.Color.BLUE);
@@ -234,12 +234,12 @@ public class ParkingLotTest {
         parkingLotSystem.park(vehicle3);
         parkingLotSystem.unPark(vehicle3);
         String numberInParkingLot = parkingLotSystem.getMyCarParkingNumber(vehicle2);
-        Assert.assertEquals("P303", numberInParkingLot);
+        Assert.assertEquals("B03", numberInParkingLot);
     }
 
     @Test
     public void givenVehicle_WhenHandicapDriverWantAttendant_ShouldGiveNearestFreeSpace() throws ParkingLotSystemException {
-        int numberOfCars = 8;
+        int numberOfCars = 9;
         parkingLotSystem = new ParkingLotSystem(owner, parkingLotHandler, parkingLot, availableLot);
         parkingLotSystem.createParkingLot();
         parkingLotSystem.addObserver(owner);
@@ -253,7 +253,7 @@ public class ParkingLotTest {
         }
         parkingLotSystem.unPark(vehicle3);
         String numberInParkingLot = parkingLotSystem.getMyCarParkingNumber(vehicle3);
-        Assert.assertEquals("P101", numberInParkingLot);
+        Assert.assertEquals("B03", numberInParkingLot);
     }
 
     //Test To Direct Large Vehicles To The Lot Which Has Max Space
@@ -273,7 +273,7 @@ public class ParkingLotTest {
         }
         parkingLotSystem.unPark(vehicle3);
         String numberInParkingLot = parkingLotSystem.getMyCarParkingNumber(vehicle2);
-        Assert.assertEquals("P101", numberInParkingLot);
+        Assert.assertEquals("A01", numberInParkingLot);
     }
 
     //Test To Give Info Police Of All The White Vehicles
