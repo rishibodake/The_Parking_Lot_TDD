@@ -2,7 +2,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.LinkedHashMap;
+import java.util.*;
 
 public class ParkingLotTest {
     ParkingLotSystem parkingLotSystem = null;
@@ -12,6 +12,7 @@ public class ParkingLotTest {
     LinkedHashMap<String, Vehicle> parkingLot = null;
     LinkedHashMap<String, Integer> availableLot = null;
     ParkingLot parkingLotHandler = null;
+    Map<String, Vehicle> listForPoliceDepartment = null;
 
 
     @Before
@@ -21,7 +22,7 @@ public class ParkingLotTest {
         parkingLot = new LinkedHashMap();
         availableLot = new LinkedHashMap<String, Integer>();
         parkingLotHandler = new ParkingLot();
-
+        listForPoliceDepartment = new HashMap<>();
     }
     //Test For Park The Vehicle
     @Test
