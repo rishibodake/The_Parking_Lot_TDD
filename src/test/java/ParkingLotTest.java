@@ -9,7 +9,6 @@ public class ParkingLotTest {
     Vehicle vehicle = null;
     Owner owner = null;
     AirportSecurity airportSecurity = null;
-    Attendant attendant = null;
     LinkedHashMap<String, Vehicle> parkingLot = null;
     LinkedHashMap<String, Integer> availableLot = null;
     ParkingLot parkingLotHandler = null;
@@ -19,7 +18,6 @@ public class ParkingLotTest {
     public void setUp() {
         owner = new Owner();
         airportSecurity = new AirportSecurity();
-        attendant = new Attendant();
         parkingLot = new LinkedHashMap();
         availableLot = new LinkedHashMap<String, Integer>();
         parkingLotHandler = new ParkingLot();
@@ -275,6 +273,29 @@ public class ParkingLotTest {
         parkingLotSystem.unPark(vehicle3);
         String numberInParkingLot = parkingLotSystem.getMyCarParkingNumber(vehicle2);
         Assert.assertEquals("P101", numberInParkingLot);
+    }
+
+    //Test To Give Info Police Of All The White Vehicles
+    @Test
+    public void givenVehicles_WhenPoliceDepartmentWantAllWhiteCars_ShouldReturnLocationOfAllCars() throws ParkingLotSystemException {
+        int numberOfCars = 8;
+        parkingLotSystem = new ParkingLotSystem(owner, parkingLotHandler, parkingLot, availableLot);
+        parkingLotSystem.createParkingLot();
+        parkingLotSystem.addObserver(owner);
+        for (int index = 0; index < numberOfCars; index++) {
+            Vehicle vehicle = new Vehicle(Integer.toString(index), "Toyota", new Driver(Driver.DriverType.NORMAL), Vehicle.VehicleType.SMALL, Vehicle.Color.WHITE);
+            parkingLotSystem.park(vehicle);
+        }
+        Vehicle vehicle2 = new Vehicle("55", "Ace", new Driver(Driver.DriverType.NORMAL), Vehicle.VehicleType.SMALL, Vehicle.Color.BLUE);
+        parkingLotSystem.park(vehicle2);
+        Vehicle vehicle3 = new Vehicle("75", "Ventura", new Driver(Driver.DriverType.NORMAL), Vehicle.VehicleType.SMALL, Vehicle.Color.BLUE);
+        parkingLotSystem.park(vehicle3);
+        listForPoliceDepartment = parkingLotSystem.getRecordsByVehicleColorForPolice(Vehicle.Color.WHITE);
+        Assert.assertEquals(9,listForPoliceDepartment.size());
+        Set<Map.Entry<String, Vehicle>> mapSet = parkingLot.entrySet();
+        Map.Entry<String, Vehicle> elementAt3 = (new ArrayList<Map.Entry<String, Vehicle>>(mapSet)).get(2);
+        Assert.assertEquals(Vehicle.Color.WHITE,elementAt3.getValue().getColor());
+        Assert.assertEquals("A03",elementAt3.getKey());
     }
 
 }
