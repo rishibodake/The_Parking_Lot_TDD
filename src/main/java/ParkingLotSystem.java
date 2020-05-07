@@ -9,10 +9,11 @@ public class ParkingLotSystem {
     int parkingLotSize = 10;
     private List<Observer> observerList = new ArrayList<>();
     private int numberOfSlot = 4;
+    ParkingLot parkingLotHandler = null;
 
-    public ParkingLotSystem(Owner owner, Attendant attendant, LinkedHashMap<String, Vehicle> parkingLot,LinkedHashMap availableLot) {
+    public ParkingLotSystem(Owner owner, ParkingLot parkingLotHandler, LinkedHashMap<String, Vehicle> parkingLot,LinkedHashMap availableLot) {
         this.owner = owner;
-        this.attendant = attendant;
+        this.parkingLotHandler = parkingLotHandler;
         this.parkingLot = parkingLot;
         this.availableLot = availableLot;
 
@@ -32,17 +33,14 @@ public class ParkingLotSystem {
 
           //Function That park The Given Vehicle Into ParkingLot
           public void park(Vehicle vehicle) throws ParkingLotSystemException {
-              owner.isAvailable(parkingLot, parkingLotSize);
-              attendant.park(parkingLot, vehicle, availableLot);
-
+              parkingLotHandler.park(parkingLot, vehicle, availableLot);
               if (!parkingLot.containsValue(null))
                     setStatus("Full");
           }
 
           //Function That unpark The given vehicle from The Parking Lot
           public void unPark(Vehicle vehicle) throws ParkingLotSystemException {
-              owner.isPresent(parkingLot, vehicle);
-              attendant.unPark(parkingLot, vehicle, availableLot);
+              parkingLotHandler.unPark(parkingLot, vehicle, availableLot);
               if (parkingLot.containsValue(null)) {
                   setStatus("Have Space");
               }
