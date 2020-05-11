@@ -134,6 +134,11 @@ public class ParkingLotSystem {
         return parkingLot.entrySet().stream().filter(entry -> color.equals(entry.getValue().getVehicle().getColor()) && brand.equals(entry.getValue().getVehicle().getVehicle_brand()))
                 .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
     }
+
+    public Map<String, Slot> getRecordsByCarBrand(Vehicle.Vehicle_Brand brand) {
+        return parkingLot.entrySet().stream().filter(entry -> brand.equals(entry.getValue().getVehicle().getVehicle_brand()))
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+    }
 }
 
 
