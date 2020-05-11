@@ -1,7 +1,5 @@
-import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 
 public class Owner implements Observer {
     private List<Attendant> attendants;
@@ -26,13 +24,19 @@ public class Owner implements Observer {
         return parkingLotStatus;
     }
 
-    public void assignAttendantForParkingLot(int numberOfSlot) {
+    public void assignAttendantForParkingLot(int numberOfSlot,LinkedHashMap<String, Integer> availableLot) {
         this.numberOfSlot = numberOfSlot;
         for (int index = 0; index < numberOfSlot; index++) {
-            attendants.add(new Attendant("Attendant" + Integer.toString(index + 1)));
+            String firstKey = availableLot.keySet().toArray()[index].toString();
+            attendants.add(new Attendant("attendant_" + firstKey));
         }
     }
 
-    public Attendant getAttendant() {
-        return attendants.get((int) (Math.random() * numberOfSlot));
-    }}
+    public Attendant getAttendant(String keyAvailable) {
+        for (int index = 0; index < attendants.size(); index++) {
+            if (attendants.get(index).getName().contains(keyAvailable))
+                return attendants.get(index);
+        }
+        return null;
+    }
+}
