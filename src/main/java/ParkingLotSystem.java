@@ -79,8 +79,9 @@ public class ParkingLotSystem {
     public boolean isParkingLotFull() {
         Iterator it = parkingLot.keySet().iterator();
         while (it.hasNext()) {
-            if ((parkingLot.get(it.next()).getVehicle()) == null)
+            if ((parkingLot.get(it.next()).getVehicle()) == null) {
                 return false;
+            }
         }
         return true;
     }

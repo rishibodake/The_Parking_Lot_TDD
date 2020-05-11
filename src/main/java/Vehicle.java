@@ -15,7 +15,7 @@ public class Vehicle {
 
     //ENUM For Vehicle Brand
     public enum Vehicle_Brand {
-        TOYOTA,HONDA;
+        TOYOTA,HONDA,MARUTI,BMW;
     }
     //ENUM for the type of vehicle
     enum VehicleType {
