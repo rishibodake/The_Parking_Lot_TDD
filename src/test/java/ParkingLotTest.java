@@ -9,15 +9,16 @@ public class ParkingLotTest {
     Vehicle vehicle = null;
     Owner owner = null;
     AirportSecurity airportSecurity = null;
-    LinkedHashMap<String, Vehicle> parkingLot = null;
+    LinkedHashMap<String, Slot> parkingLot = null;
     LinkedHashMap<String, Integer> availableLot = null;
     ParkingLot parkingLotHandler = null;
-    Map<String, Vehicle> listForPoliceDepartment = null;
-
+    Map<String, Slot> listForPoliceDepartment = null;
+    List<Attendant> attendants = null;
 
     @Before
     public void setUp() {
-        owner = new Owner();
+        attendants= new ArrayList<Attendant>();
+        owner = new Owner(attendants);
         airportSecurity = new AirportSecurity();
         parkingLot = new LinkedHashMap();
         availableLot = new LinkedHashMap<String, Integer>();
