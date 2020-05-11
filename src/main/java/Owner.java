@@ -3,8 +3,13 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class Owner implements Observer {
+    private List<Attendant> attendants;
     private String parkingLotStatus;
-    private String parkingCharge;
+    private int numberOfSlot;
+
+    public Owner(List<Attendant> attendants) {
+        this.attendants = attendants;
+    }
 
     //overided method update from Observer Interface
     @Override
@@ -20,9 +25,13 @@ public class Owner implements Observer {
         return parkingLotStatus;
     }
 
-
-
-    public void setParkingCharge(String parkingCharge) {
-        this.parkingCharge = parkingCharge;
+    public void assignAttendantForParkingLot(int numberOfSlot) {
+        this.numberOfSlot = numberOfSlot;
+        for (int index = 0; index < numberOfSlot; index++) {
+            attendants.add(new Attendant("Attendant" + Integer.toString(index + 1)));
+        }
     }
-}
+
+    public Attendant getAttendant() {
+        return attendants.get((int) (Math.random() * numberOfSlot));
+    }}
