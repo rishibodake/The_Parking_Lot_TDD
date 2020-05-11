@@ -3,25 +3,19 @@ import java.util.stream.Collectors;
 
 public class ParkingLotSystem {
     Owner owner = null;
-    LinkedHashMap availableLot = null ;
-    LinkedHashMap<String, Vehicle> parkingLot = new LinkedHashMap();
     String isFull;
-    int parkingLotSize = 11;
     private List<Observer> observerList = new ArrayList<>();
-    private int numberOfSlot = 4;
     ParkingLot parkingLotHandler = null;
-    Map<String,Vehicle> listForPoliceDepartment = new HashMap<>();
     String lotName[] = new String[25];
-    Vehicle vehicle = new Vehicle();
     Slot slot = new Slot(null, null);
     LinkedHashMap<String, Slot> parkingLot = null;
     LinkedHashMap<String, Integer> availableLot = null;
-    private List<IObservable> observableList = new ArrayList<>();
-    Map<String, Slot> listForPoliceDepartment = new HashMap<>();
+    private List<Observable> observableList = new ArrayList<>();
 
 
 
-    public ParkingLotSystem(Owner owner, ParkingLot parkingLotHandler, LinkedHashMap<String, Vehicle> parkingLot,LinkedHashMap availableLot) {
+
+    public ParkingLotSystem(Owner owner, ParkingLot parkingLotHandler, LinkedHashMap parkingLot,LinkedHashMap availableLot) {
         this.owner = owner;
         this.parkingLotHandler = parkingLotHandler;
         this.parkingLot = parkingLot;
@@ -102,7 +96,7 @@ public class ParkingLotSystem {
                 return null;
                 }
     //This Function Is Responcible To Distribute The PArking Lot Evanly
-    public void createParkingLot(int parkingLotCapacity, int numberOfSlot) {
+    public void createParkingLot(int parkingLotSize, int numberOfSlot) {
         owner.assignAttendantForParkingLot(numberOfSlot);
         int counter = 1, index = 0, slot = 1, length = 0, slotCapacity = 0;
         String letters = "A B C D E F G H I J K L M N O P Q R S T U V W X Y Z";

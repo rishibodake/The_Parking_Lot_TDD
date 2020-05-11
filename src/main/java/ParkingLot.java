@@ -6,6 +6,7 @@ public class ParkingLot {
     String unParkMethod = "UN_PARK";
     String parkMethodForLargeVehicle = "PARK_LARGE_VEHICLE";
     String unParkMethodForLargeVehicle = "UNPARK_LARGE_VEHICLE";
+    String nextVehicleKey;
     int value;
 
     public void park(HashMap<String, Slot> parkingLot, Vehicle vehicle, LinkedHashMap<String, Integer> availableLot, Slot slot, Owner owner) throws ParkingLotSystemException {
@@ -72,7 +73,6 @@ public class ParkingLot {
     public void unPark(LinkedHashMap<String, Slot> parkingLot1, Vehicle vehicle, LinkedHashMap<String, Integer> availableLot, Slot slot) throws ParkingLotSystemException {
         Iterator<String> parkingLotItr = parkingLot1.keySet().iterator();
         while (parkingLotItr.hasNext()) {
-            String key = parkingLotItr.next();
             while (parkingLotItr.hasNext()) {
                 String key = parkingLotItr.next();
                 if (parkingLot1.get(key).getVehicle().equals(vehicle)) {
