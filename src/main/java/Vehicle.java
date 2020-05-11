@@ -5,12 +5,18 @@ public class Vehicle {
     private  String name;
     private VehicleType vehicleType;
     private String vehicleId;
+    private Vehicle_Brand vehicle_brand;
+
 
     public VehicleType getVehicleType() {
         return vehicleType;
     }
 
 
+    //ENUM For Vehicle Brand
+    public enum Vehicle_Brand {
+        TOYOTA,HONDA;
+    }
     //ENUM for the type of vehicle
     enum VehicleType {
         SMALL, LARGE
@@ -21,13 +27,15 @@ public class Vehicle {
         RED,BLUE,BLACK,GREEN,WHITE
     }
 //Constructor For With parameter
-    public Vehicle(String vehicleNumber, String name,Driver driver,VehicleType vehicleType,Color color) {
+    public Vehicle(String vehicleNumber, Vehicle_Brand vehicle_brand,Driver driver,VehicleType vehicleType,Color color) {
         this.vehicleNumber = vehicleNumber;
-        this.name = name;
         this.driver = driver;
         this.vehicleType = vehicleType;
         this.color = color;
+        this.vehicle_brand = vehicle_brand;
+
     }
+
     public Color getColor() {
         return color;
     }
@@ -35,15 +43,17 @@ public class Vehicle {
         return name;
     }
 
-    public String getVehicleId() {
-        return vehicleId;
-    }
-
-
     public Driver getDriver() {
         return driver;
     }
     public VehicleType getDriverType() {
         return vehicleType;
+    }
+    public Vehicle_Brand getVehicle_brand() {
+        return vehicle_brand;
+    }
+
+    public String getVehicleId() {
+        return vehicleId;
     }
 }
