@@ -299,5 +299,30 @@ public class ParkingLotTest {
         Assert.assertEquals("A03",elementAt3.getKey());
     }
 
+    //Test For Sending Info About Blue Toyota Vehicle
+    @Test
+    public void givenVehicles_WhenPoliceDepartmentWantAllBlueToyotaCarsInformation_ShouldReturnLocationOfAllCars() throws ParkingLotSystemException {
+        int numberOfCars = 9;
+        parkingLotSystem = new ParkingLotSystem(owner, parkingLotHandler, parkingLot, availableLot);
+        parkingLotSystem.createParkingLot(11, 4);
+        parkingLotSystem.addObserver(owner);
+        for (int index = 0; index < numberOfCars; index++) {
+            Vehicle vehicle = new Vehicle("MH10-" + Integer.toString(index), Vehicle.Vehicle_Brand.TOYOTA, new Driver(Driver.DriverType.NORMAL), Vehicle.VehicleType.SMALL, Vehicle.Color.BLUE);
+            parkingLotSystem.park(vehicle);
+        }
+        Vehicle vehicle2 = new Vehicle("MH10-55", Vehicle.Vehicle_Brand.HONDA, new Driver(Driver.DriverType.NORMAL), Vehicle.VehicleType.SMALL, Vehicle.Color.BLUE);
+        parkingLotSystem.park(vehicle2);
+        Vehicle vehicle3 = new Vehicle("MH10-75", Vehicle.Vehicle_Brand.TOYOTA, new Driver(Driver.DriverType.NORMAL), Vehicle.VehicleType.SMALL, Vehicle.Color.BLUE);
+        parkingLotSystem.park(vehicle3);
+        listForPoliceDepartment = parkingLotSystem.getRecordsByVehicleColorAndName(Vehicle.Vehicle_Brand.TOYOTA, Vehicle.Color.BLUE);
+        Assert.assertEquals(10, listForPoliceDepartment.size());
+        Set<Map.Entry<String, Slot>> mapSet = parkingLot.entrySet();
+        Map.Entry<String, Slot> elementAt3 = (new ArrayList<Map.Entry<String, Slot>>(mapSet)).get(2);
+        Assert.assertEquals(Vehicle.Color.BLUE, elementAt3.getValue().getVehicle().getColor());
+        Assert.assertEquals("A03", elementAt3.getKey());
+        Assert.assertEquals("MH46-7", elementAt3.getValue().getVehicle().getVehicleId());
+        Assert.assertEquals("Attendant2", elementAt3.getValue().getAttendant().getName());
+    }
+
 }
 
