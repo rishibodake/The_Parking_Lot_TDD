@@ -319,8 +319,34 @@ public class ParkingLotTest {
         Map.Entry<String, Slot> elementAt3 = (new ArrayList<Map.Entry<String, Slot>>(mapSet)).get(2);
         Assert.assertEquals(Vehicle.Color.BLUE, elementAt3.getValue().getVehicle().getColor());
         Assert.assertEquals("A03", elementAt3.getKey());
-        Assert.assertEquals("MH46-7", elementAt3.getValue().getVehicle().getVehicleId());
+        Assert.assertEquals("MH10-7", elementAt3.getValue().getVehicle().getVehicleId());
         Assert.assertEquals("Attendant2", elementAt3.getValue().getAttendant().getName());
+    }
+
+    //Test For Information Of The BMW cars
+    @Test
+    public void givenVehicles_WhenPoliceDepartmentWantBMWCarsInformation_ShouldReturnLocationOfAllCars() throws ParkingLotSystemException {
+        int numberOfCars = 9;
+        parkingLotSystem = new ParkingLotSystem(owner, parkingLotHandler, parkingLot, availableLot);
+        parkingLotSystem.createParkingLot(11, 4);
+        parkingLotSystem.addObserver(owner);
+        for (int i = 0; i < numberOfCars; i++) {
+            Vehicle vehicle = new Vehicle("MH10-" + Integer.toString(i), Vehicle.Vehicle_Brand.BMW, new Driver(Driver.DriverType.NORMAL), Vehicle.VehicleType.SMALL, Vehicle.Color.RED);
+            parkingLotSystem.park(vehicle);
+        }
+        Vehicle vehicle2 = new Vehicle("MH10-55", Vehicle.Vehicle_Brand.HONDA, new Driver(Driver.DriverType.NORMAL), Vehicle.VehicleType.SMALL, Vehicle.Color.BLUE);
+        parkingLotSystem.park(vehicle2);
+        Vehicle vehicle3 = new Vehicle("MH10-75", Vehicle.Vehicle_Brand.TOYOTA, new Driver(Driver.DriverType.NORMAL), Vehicle.VehicleType.SMALL, Vehicle.Color.BLUE);
+        parkingLotSystem.park(vehicle3);
+        listForPoliceDepartment = parkingLotSystem.getRecordsByCarBrand(Vehicle.Vehicle_Brand.BMW);
+        Assert.assertEquals(9, listForPoliceDepartment.size());
+        Set<Map.Entry<String, Slot>> mapSet = parkingLot.entrySet();
+        Map.Entry<String, Slot> elementAt3 = (new ArrayList<Map.Entry<String, Slot>>(mapSet)).get(2);
+        Assert.assertEquals(11, mapSet.size());
+        Assert.assertEquals(Vehicle.Color.RED, elementAt3.getValue().getVehicle().getColor());
+        Assert.assertEquals("A03", elementAt3.getKey());
+        Assert.assertEquals("MH10-7", elementAt3.getValue().getVehicle().getVehicleId());
+        Assert.assertEquals("attendant_A", elementAt3.getValue().getAttendant().getName());
     }
 
 }
